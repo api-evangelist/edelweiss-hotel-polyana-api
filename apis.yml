@@ -1,0 +1,55 @@
+name: Edelweiss Hotel Polyana API
+description: >-
+  Public open REST API and structured data feeds for Edelweiss Hotel Polyana, a 3-star boutique eco-hotel in Polyana,
+  Zakarpattia, Ukraine. Provides real-time room tariffs, hotel info, a Google Hotels XML pricing feed, quote
+  calculation, and LLM knowledge bases. Open access, no authentication.
+url: https://raw.githubusercontent.com/api-evangelist/edelweiss-hotel-polyana-api/refs/heads/main/apis.yml
+created: '2026-09-18'
+modified: '2026-09-18'
+specificationVersion: '0.21'
+tags:
+  - Hotels
+  - Hospitality
+  - Travel
+  - Tourism
+  - Ukraine
+  - Carpathians
+  - Mineral Water
+  - Balneology
+  - Booking
+  - Room Rates
+  - Google Hotels
+apis:
+  - name: Edelweiss Hotel Polyana API
+    description: >-
+      Official open REST API (JSON + XML) for Edelweiss Hotel Polyana with OpenAPI 3.1.0 contract, hotel info, room
+      tariffs, real-time quotes, Google Hotels XML feed, and LLM knowledge manifests. No authentication required.
+    humanURL: https://edelweiss-hotel.com.ua/api-docs
+    baseURL: https://edelweiss-hotel.com.ua
+    tags:
+      - Hotels
+      - Hospitality
+      - Travel
+      - Tourism
+      - Ukraine
+      - Carpathians
+      - Mineral Water
+      - Balneology
+      - Booking
+      - Room Rates
+      - Google Hotels
+    properties:
+      - type: OpenAPI
+        url: https://edelweiss-hotel.com.ua/openapi.json
+      - type: Documentation
+        url: https://edelweiss-hotel.com.ua/api-docs
+      - type: LLMsTxt
+        url: https://edelweiss-hotel.com.ua/llms.txt
+maintainers:
+  - FN: Edelweiss Hotel Polyana Administration
+    url: https://edelweiss-hotel.com.ua
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 97
+  at: '2026-09-18T20:30:10.765Z'
