@@ -1,0 +1,41 @@
+overlay: 1.0.0
+info:
+  title: Edelweiss Hotel Polyana API — API Evangelist enrichment overlay
+  version: 1.0.0
+extends: ../openapi/edelweiss-hotel-polyana-api-openapi.json
+x-provenance:
+  generated: '2026-09-18'
+  method: generated
+  source: >-
+    Enhancements layered by the API Evangelist enrichment pipeline over the
+    provider's verbatim OpenAPI 3.1.0 contract. Does not mutate the original.
+actions:
+  - target: $.info
+    description: Record the discovery surfaces observed alongside the contract.
+    update:
+      x-agent-surfaces:
+        llms_txt: https://edelweiss-hotel.com.ua/llms.txt
+        llms_full_txt: https://edelweiss-hotel.com.ua/llms-full.txt
+        llms_en_txt: https://edelweiss-hotel.com.ua/llms-en.txt
+        ai_plugin: https://edelweiss-hotel.com.ua/.well-known/ai-plugin.json
+        apis_json: https://edelweiss-hotel.com.ua/apis.json
+  - target: $.paths./api/ai-info/.get
+    description: Note verified caching + CORS behavior observed on the live endpoint.
+    update:
+      x-runtime:
+        cors: 'Access-Control-Allow-Origin: *'
+        cache_control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800
+        idempotent: true
+        read_only: true
+  - target: $.paths./api/quote/.get
+    description: >-
+      Canonical live path uses a trailing slash (/api/quote/ returns 200; the
+      no-slash form 308-redirects to it).
+    update:
+      x-canonical-path: /api/quote/
+  - target: $.paths./api/search/.get
+    description: >-
+      Canonical live path uses a trailing slash (/api/search/); supports a
+      per_page result cap and a uk/en lang selector.
+    update:
+      x-canonical-path: /api/search/

@@ -1,0 +1,17 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  Provider docs (api-docs, llms.txt, llms-full.txt) and live response headers on
+  /api/ai-info/ and /api/quote/.
+limit_count: 0
+limits: []
+response_headers:
+  rate_limit_headers_observed: false
+  note: >-
+    No X-RateLimit-*, RateLimit-*, or Retry-After headers were observed on live
+    responses. The only cache/traffic-control signal is Cache-Control
+    (public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800), which
+    encourages CDN caching rather than throttling.
+note: >-
+  No rate limits are documented and none were observed. The API is anonymous,
+  read-only, and heavily cacheable; an honest zero, not a gap in the search.

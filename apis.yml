@@ -40,16 +40,63 @@ apis:
       - Google Hotels
     properties:
       - type: OpenAPI
+        url: openapi/edelweiss-hotel-polyana-api-openapi.json
+      - type: OpenAPI
         url: https://edelweiss-hotel.com.ua/openapi.json
       - type: Documentation
         url: https://edelweiss-hotel.com.ua/api-docs
       - type: LLMsTxt
         url: https://edelweiss-hotel.com.ua/llms.txt
+      - type: LLMsTxt
+        url: llms/edelweiss-hotel-polyana-api-llms.txt
+      - type: Overlay
+        url: overlays/edelweiss-hotel-polyana-api-openapi-overlay.yaml
 maintainers:
   - FN: Edelweiss Hotel Polyana Administration
+    email: welcome@edelweiss-hotel.com.ua
     url: https://edelweiss-hotel.com.ua
-generated:
+x-generated:
   by: apis.io/add
   model: claude-opus-4-8
   confidence: 97
   at: '2026-09-18T20:30:10.765Z'
+common:
+- type: Website
+  url: https://edelweiss-hotel.com.ua/
+- type: Documentation
+  url: https://edelweiss-hotel.com.ua/api-docs
+- type: Pricing
+  url: https://edelweiss-hotel.com.ua/prices/
+- type: Support
+  url: https://edelweiss-hotel.com.ua/contacts/
+- type: TermsOfService
+  url: https://edelweiss-hotel.com.ua/terms/
+- type: PrivacyPolicy
+  url: https://edelweiss-hotel.com.ua/privacy/
+- type: Authentication
+  url: authentication/edelweiss-hotel-polyana-api-authentication.yml
+- type: WellKnown
+  url: well-known/edelweiss-hotel-polyana-api-well-known.yml
+- type: MCPServer
+  url: mcp/edelweiss-hotel-polyana-api-mcp.yml
+- type: Conformance
+  url: conformance/edelweiss-hotel-polyana-api-conformance.yml
+- type: Conventions
+  url: conventions/edelweiss-hotel-polyana-api-conventions.yml
+- type: DataModel
+  url: data-model/edelweiss-hotel-polyana-api-data-model.yml
+- type: Lifecycle
+  url: lifecycle/edelweiss-hotel-polyana-api-lifecycle.yml
+- type: Plans
+  url: plans/edelweiss-hotel-polyana-api-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/edelweiss-hotel-polyana-api-rate-limits.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/edelweiss-hotel-polyana-api-domain-security.yml
+x-enrichment:
+  date: '2026-09-18'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v3

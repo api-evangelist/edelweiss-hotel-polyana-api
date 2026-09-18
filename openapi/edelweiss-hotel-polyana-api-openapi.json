@@ -1,0 +1,404 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Edelweiss Hotel Polyana API",
+    "version": "1.0.0",
+    "description": "Official public REST API and structured data feeds for Hotel Edelweiss (Polyana resort, Zakarpattia, Ukraine). Provides real-time room tariffs (SSOT 2026), verified Booking.com rating (9.1/10), balneological profile for 'Polyana Kvasova' mineral water, Google Hotel Center XML feed, and search services.",
+    "contact": {
+      "name": "Edelweiss Hotel Administration",
+      "url": "https://edelweiss-hotel.com.ua/contacts",
+      "email": "welcome@edelweiss-hotel.com.ua"
+    },
+    "license": {
+      "name": "CC BY-ND 4.0",
+      "url": "https://creativecommons.org/licenses/by-nd/4.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://edelweiss-hotel.com.ua",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Hotel Information",
+      "description": "Public factual data, ratings, room tariffs, and resort profiles"
+    },
+    {
+      "name": "Availability & Pricing",
+      "description": "Real-time rates and XML listing feeds for Google Hotels & OTA aggregators"
+    },
+    {
+      "name": "Search",
+      "description": "Public content and room search query endpoint"
+    },
+    {
+      "name": "AI & LLM Manifests",
+      "description": "Structured Markdown and text discovery endpoints for AI agents"
+    }
+  ],
+  "paths": {
+    "/api/quote": {
+      "get": {
+        "tags": ["Availability & Pricing"],
+        "summary": "Real-time Room Rate & Stay Quote Calculator",
+        "description": "Calculates exact cost for a stay given check-in, check-out dates, room type, and optional full-board meals or military discounts.",
+        "operationId": "calculateStayQuote",
+        "parameters": [
+          {
+            "name": "check_in",
+            "in": "query",
+            "required": true,
+            "description": "Check-in date (YYYY-MM-DD)",
+            "schema": { "type": "string", "format": "date", "example": "2026-10-01" }
+          },
+          {
+            "name": "check_out",
+            "in": "query",
+            "required": true,
+            "description": "Check-out date (YYYY-MM-DD)",
+            "schema": { "type": "string", "format": "date", "example": "2026-10-05" }
+          },
+          {
+            "name": "room",
+            "in": "query",
+            "required": false,
+            "description": "Room category key or slug ('standart', 'superior-triple', 'classic-lux', 'lux')",
+            "schema": { "type": "string", "default": "standart" }
+          },
+          {
+            "name": "guests",
+            "in": "query",
+            "required": false,
+            "description": "Number of guests staying",
+            "schema": { "type": "integer", "default": 2 }
+          },
+          {
+            "name": "meals",
+            "in": "query",
+            "required": false,
+            "description": "Include full board 3 meals/day (600 UAH/person/day)",
+            "schema": { "type": "boolean", "default": false }
+          },
+          {
+            "name": "military",
+            "in": "query",
+            "required": false,
+            "description": "Apply 10% discount for Armed Forces of Ukraine (AFU/ZSU) servicemen and veterans",
+            "schema": { "type": "boolean", "default": false }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed quote calculation with itemized cost breakdown and direct booking URL"
+          }
+        }
+      }
+    },
+    "/api/ai-info/": {
+      "get": {
+        "tags": ["Hotel Information"],
+        "summary": "Comprehensive Hotel Information & Room Tariffs (JSON)",
+        "description": "Returns full master SSOT hotel metadata, room tariffs for 2026, verified Booking.com rating (9.1/10 from 142 reviews), balneological medical profile ('Polyana Kvasova' mineral water), amenities, infrastructure, and policies.",
+        "operationId": "getHotelAiInfo",
+        "responses": {
+          "200": {
+            "description": "Hotel details and room tariffs successfully retrieved",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": { "type": "string", "example": "*" },
+                "description": "CORS header permitting cross-origin requests from any client"
+              },
+              "Cache-Control": {
+                "schema": { "type": "string", "example": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800" },
+                "description": "HTTP caching directive"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HotelAiData"
+                },
+                "example": {
+                  "hotel": {
+                    "id": "edelweiss-polyana",
+                    "nameUk": "Готель «Едельвейс» Поляна",
+                    "nameEn": "Edelweiss Hotel Polyana",
+                    "stars": 3,
+                    "totalRooms": 10,
+                    "floors": 4,
+                    "website": "https://edelweiss-hotel.com.ua",
+                    "directBookingUrl": "https://edelweiss-hotel.com.ua/booking"
+                  },
+                  "rating": {
+                    "booking": 9.1,
+                    "google": 9.1,
+                    "maxRating": 10,
+                    "totalReviews": 142,
+                    "badge": "9.1 / 10 Superb",
+                    "source": "Booking.com verified guest reviews (142 reviews, 9.1 score)"
+                  },
+                  "location": {
+                    "addressUk": "вул. Курортно-Бічна, 4, с. Поляна, Мукачівський р-н, Закарпатська обл., 89313",
+                    "addressEn": "4 Kurortno-Bichna Str, Polyana, Mukachevo District, Zakarpattia Oblast, 89313, Ukraine",
+                    "country": "Ukraine",
+                    "postalCode": "89313",
+                    "geoCoordinates": {
+                      "latitude": 48.6258,
+                      "longitude": 22.9665
+                    },
+                    "distanceToMineralSpring": {
+                      "uk": "150 м до діючого бювету мінеральних вод «Поляна Квасова»",
+                      "en": "150 m to the 'Polyana Kvasova' mineral water pump room"
+                    }
+                  },
+                  "roomTariffs2026": [
+                    {
+                      "key": "standard-double",
+                      "canonicalSlug": "standart",
+                      "nameUk": "Стандартний двомісний",
+                      "nameEn": "Standard Double or Twin",
+                      "pricePerNightUah": 1100,
+                      "areaSqm": 18,
+                      "capacityGuests": 2,
+                      "hasBalcony": false
+                    },
+                    {
+                      "key": "superior-triple",
+                      "canonicalSlug": "pokrashchenyy-trymisnyy",
+                      "nameUk": "Покращений тримісний",
+                      "nameEn": "Superior Triple",
+                      "bookingComAliasUk": "Студіо",
+                      "bookingComAliasEn": "Studio",
+                      "pricePerNightUah": 1400,
+                      "areaSqm": 32,
+                      "capacityGuests": 4,
+                      "hasBalcony": true
+                    },
+                    {
+                      "key": "classic-lux",
+                      "canonicalSlug": "klasychnyy-lyuks",
+                      "nameUk": "Класичний люкс",
+                      "nameEn": "Classic Lux",
+                      "bookingComAliasUk": "Люкс+",
+                      "bookingComAliasEn": "Lux+",
+                      "pricePerNightUah": 1600,
+                      "areaSqm": 38,
+                      "capacityGuests": 4,
+                      "hasBalcony": true
+                    },
+                    {
+                      "key": "lux",
+                      "canonicalSlug": "lux",
+                      "nameUk": "Люкс",
+                      "nameEn": "Lux Suite",
+                      "pricePerNightUah": 1800,
+                      "areaSqm": 40,
+                      "capacityGuests": 4,
+                      "hasBalcony": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/google-hotels/": {
+      "get": {
+        "tags": ["Availability & Pricing"],
+        "summary": "Google Hotel Center XML Feed",
+        "description": "Outputs real-time pricing and room listing XML feed compliant with Google Hotels standard schema. Includes live rates, room category codes, capacity, and direct booking URLs.",
+        "operationId": "getGoogleHotelsXml",
+        "responses": {
+          "200": {
+            "description": "Valid Google Hotel Center XML feed",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string",
+                  "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<listings>\n  <entity type=\"hotel\">\n    <hotel_id>edelweiss-polyana</hotel_id>\n    <name>Edelweiss Hotel Polyana</name>\n    <roomtypes>\n      <roomtype id=\"standard-double\"><rate currency=\"UAH\">1100</rate></roomtype>\n    </roomtypes>\n  </entity>\n</listings>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "tags": ["Search"],
+        "summary": "Live Search across Rooms & Hotel Services",
+        "description": "Performs fast search across published rooms, services, FAQs, and articles.",
+        "operationId": "searchContent",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query string (minimum 2 characters)",
+            "schema": { "type": "string", "example": "люкс" }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language code ('uk' or 'en')",
+            "schema": { "type": "string", "enum": ["uk", "en"], "default": "uk" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results to return",
+            "schema": { "type": "integer", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "title": { "type": "string" },
+                          "url": { "type": "string" },
+                          "type": { "type": "string" }
+                        }
+                      }
+                    },
+                    "total": { "type": "integer" },
+                    "query": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "tags": ["AI & LLM Manifests"],
+        "summary": "LLM Standard Knowledge Manifest (Markdown)",
+        "description": "Structured Markdown context file conforming to the llmstxt.org specification for LLMs, ChatGPT, Claude, and Perplexity.",
+        "operationId": "getLlmsTxt",
+        "responses": {
+          "200": {
+            "description": "Plaintext Markdown content",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HotelAiData": {
+        "type": "object",
+        "properties": {
+          "hotel": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "nameUk": { "type": "string" },
+              "nameEn": { "type": "string" },
+              "stars": { "type": "integer" },
+              "totalRooms": { "type": "integer" },
+              "floors": { "type": "integer" },
+              "descriptionUk": { "type": "string" },
+              "descriptionEn": { "type": "string" },
+              "website": { "type": "string", "format": "uri" },
+              "directBookingUrl": { "type": "string", "format": "uri" }
+            }
+          },
+          "rating": {
+            "type": "object",
+            "properties": {
+              "booking": { "type": "number" },
+              "google": { "type": "number" },
+              "maxRating": { "type": "number" },
+              "totalReviews": { "type": "integer" },
+              "badge": { "type": "string" },
+              "source": { "type": "string" }
+            }
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "addressUk": { "type": "string" },
+              "addressEn": { "type": "string" },
+              "country": { "type": "string" },
+              "postalCode": { "type": "string" },
+              "geoCoordinates": {
+                "type": "object",
+                "properties": {
+                  "latitude": { "type": "number" },
+                  "longitude": { "type": "number" }
+                }
+              }
+            }
+          },
+          "roomTariffs2026": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoomTariff"
+            }
+          },
+          "extraServices": {
+            "type": "object",
+            "properties": {
+              "fullBoardPriceUah": { "type": "number" },
+              "extraBedPriceUah": { "type": "number" },
+              "resortTaxUah": { "type": "number" }
+            }
+          },
+          "medicalProfile": {
+            "type": "object",
+            "properties": {
+              "mineralWater": { "type": "string" },
+              "pumpRoomDistanceMeters": { "type": "integer" },
+              "indications": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "RoomTariff": {
+        "type": "object",
+        "properties": {
+          "key": { "type": "string" },
+          "canonicalSlug": { "type": "string" },
+          "nameUk": { "type": "string" },
+          "nameEn": { "type": "string" },
+          "bookingComAliasUk": { "type": "string" },
+          "bookingComAliasEn": { "type": "string" },
+          "urlUk": { "type": "string", "format": "uri" },
+          "urlEn": { "type": "string", "format": "uri" },
+          "pricePerNightUah": { "type": "number" },
+          "areaSqm": { "type": "number" },
+          "capacityGuests": { "type": "integer" },
+          "hasBalcony": { "type": "boolean" },
+          "hasBathtub": { "type": "boolean" },
+          "beddingUk": { "type": "string" },
+          "beddingEn": { "type": "string" }
+        }
+      }
+    }
+  }
+}

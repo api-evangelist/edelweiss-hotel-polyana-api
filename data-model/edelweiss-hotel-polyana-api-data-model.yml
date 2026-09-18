@@ -1,0 +1,44 @@
+generated: '2026-09-18'
+method: derived
+source: openapi/edelweiss-hotel-polyana-api-openapi.json components.schemas
+summary: >-
+  Small read-model. A single HotelAiData aggregate root embeds rating, location,
+  a medical (balneological) profile, extra-services pricing, and a collection of
+  RoomTariff entries. The quote and Google-Hotels feed are projections of the
+  same underlying room/tariff data.
+entities:
+  - name: HotelAiData
+    role: aggregate root
+    description: Full hotel master record (SSOT 2026) returned by getHotelAiInfo.
+    fields:
+      - hotel (id, nameUk, nameEn, stars, totalRooms, floors, website, directBookingUrl)
+      - rating (booking, google, maxRating, totalReviews, badge, source)
+      - location (addressUk/En, country, postalCode, geoCoordinates)
+      - extraServices (fullBoardPriceUah, extraBedPriceUah, resortTaxUah)
+      - medicalProfile (mineralWater, pumpRoomDistanceMeters, indications[])
+  - name: RoomTariff
+    role: entity
+    description: One room category with 2026 direct tariff and attributes.
+    fields:
+      - key
+      - canonicalSlug
+      - nameUk / nameEn
+      - bookingComAliasUk / bookingComAliasEn
+      - urlUk / urlEn
+      - pricePerNightUah
+      - areaSqm
+      - capacityGuests
+      - hasBalcony / hasBathtub
+      - beddingUk / beddingEn
+relationships:
+  - from: HotelAiData
+    to: RoomTariff
+    type: has_many
+    via: roomTariffs2026[]
+identifiers:
+  - hotel.id: string slug (e.g. "edelweiss-polyana")
+  - RoomTariff.canonicalSlug: booking/quote key (standart, superior-triple, classic-lux, lux)
+notes: >-
+  The Google Hotels XML feed (getGoogleHotelsXml) and the quote calculator
+  (calculateStayQuote) are read projections over the same room/tariff data; they
+  add no new persisted entities.

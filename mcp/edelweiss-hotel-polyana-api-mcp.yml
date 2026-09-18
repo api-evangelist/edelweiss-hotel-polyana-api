@@ -1,0 +1,40 @@
+generated: '2026-09-18'
+method: derived
+source: >-
+  Derived from openapi/edelweiss-hotel-polyana-api-openapi.json operations. No
+  official or hosted MCP server was found (searched the provider site, llms.txt,
+  and llms-full.txt; none references MCP).
+status: candidate
+name: edelweiss-hotel-polyana
+description: >-
+  Candidate MCP tool list derived from the hotel's open REST API. No MCP server
+  is published by the provider; these tools would map 1:1 onto the existing
+  unauthenticated GET operations if a server were built.
+deployment:
+  mode: none
+  auth: none
+  verified: derived
+  note: >-
+    No MCP server exists. This is a derived candidate only; endpoint and install
+    are intentionally empty. Do not treat as a live agent surface.
+tools:
+  - name: get_hotel_ai_info
+    rest: getHotelAiInfo
+    description: >-
+      Return full hotel metadata, 2026 room tariffs, verified Booking.com rating
+      (9.1/10), and the 'Polyana Kvasova' balneological profile.
+  - name: calculate_stay_quote
+    rest: calculateStayQuote
+    description: >-
+      Calculate an itemized stay cost given check-in, check-out, room type,
+      guests, optional full board and military discount; returns a direct
+      booking URL.
+  - name: get_google_hotels_xml
+    rest: getGoogleHotelsXml
+    description: Return the real-time Google Hotel Center XML pricing/listing feed.
+  - name: search_content
+    rest: searchContent
+    description: Search rooms, services, FAQs, and articles (uk/en).
+  - name: get_llms_txt
+    rest: getLlmsTxt
+    description: Return the llmstxt.org knowledge manifest.

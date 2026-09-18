@@ -1,0 +1,17 @@
+generated: '2026-09-18'
+method: generated
+source: >-
+  Generated from openapi/edelweiss-hotel-polyana-api-openapi.json real
+  operationIds. No provider-published skills/AGENTS.md was found.
+api: Edelweiss Hotel Polyana API
+skills:
+  - name: get-stay-quote
+    file: edelweiss-hotel-polyana-api-get-stay-quote.md
+    operations:
+      - calculateStayQuote
+  - name: get-hotel-info
+    file: edelweiss-hotel-polyana-api-get-hotel-info.md
+    operations:
+      - getHotelAiInfo
+      - getGoogleHotelsXml
+      - searchContent

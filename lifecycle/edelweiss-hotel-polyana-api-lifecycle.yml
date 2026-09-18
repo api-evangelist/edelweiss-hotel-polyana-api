@@ -1,0 +1,24 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://edelweiss-hotel.com.ua/openapi.json (info.version) and provider site
+  (no versioning/deprecation/SLA/status pages found).
+versioning:
+  scheme: single-version
+  current: 1.0.0
+  note: >-
+    OpenAPI info.version is 1.0.0. No URI or header API versioning is used; the
+    single production server is https://edelweiss-hotel.com.ua. Tariff data
+    carries a data-year label ("SSOT 2026") independent of the API version.
+deprecation:
+  policy: none-published
+  sunset_header: not observed
+  deprecated_operations: []
+sla:
+  published: false
+status_page:
+  present: false
+notes: >-
+  A tiny open public-data API from a 10-room hotel; no formal deprecation policy,
+  SLA, or status page is published, and none would be expected at this scale.
+  Honest absence — no StatusPage or Deprecation pointer is emitted.

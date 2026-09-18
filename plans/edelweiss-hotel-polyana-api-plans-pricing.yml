@@ -1,0 +1,14 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://edelweiss-hotel.com.ua/.well-known/ai-plugin.json (auth: none),
+  https://edelweiss-hotel.com.ua/openapi.json (no auth/quota),
+  https://edelweiss-hotel.com.ua/prices/ (hotel room tariffs, not API tiers)
+plan_count: 0
+plans: []
+note: >-
+  The API itself has no access plans or tiers: it is free, open, and
+  unauthenticated (license CC BY-ND 4.0). The provider's /prices/ page lists
+  HOTEL ROOM tariffs (1,100-1,800 UAH/night for 2026), which are the commercial
+  product the API describes, not a paid API plan. Recorded as plan_count 0
+  because there is nothing to pay for to call the API.
