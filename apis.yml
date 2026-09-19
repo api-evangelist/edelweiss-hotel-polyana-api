@@ -18,6 +18,18 @@ tags:
   - Balneology
   - Booking
   - Room Rates
+  - google-hotels
+tags_raw:
+  - Hotels
+  - Hospitality
+  - Travel
+  - Tourism
+  - Ukraine
+  - Carpathians
+  - Mineral Water
+  - Balneology
+  - Booking
+  - Room Rates
   - Google Hotels
 apis:
   - name: Edelweiss Hotel Polyana API
@@ -27,6 +39,18 @@ apis:
     humanURL: https://edelweiss-hotel.com.ua/api-docs
     baseURL: https://edelweiss-hotel.com.ua
     tags:
+      - Hotels
+      - Hospitality
+      - Travel
+      - Tourism
+      - Ukraine
+      - Carpathians
+      - Mineral Water
+      - Balneology
+      - Booking
+      - Room Rates
+      - google-hotels
+    tags_raw:
       - Hotels
       - Hospitality
       - Travel
