@@ -2,15 +2,15 @@
 kin_checks:
   slug: edelweiss-hotel-polyana-api
   schema_version: 0.22.0
-  scored_at: '2026-09-18'
-  run_ts: 2026-09-18T231945
+  scored_at: '2026-09-19'
+  run_ts: 2026-09-19T193153
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 136
-    earned: 34
-    partial: 6
+    earned: 33
+    partial: 7
     missed: 67
     na: 29
   checks:
@@ -158,6 +158,10 @@ kin_checks:
   - id: examples_present
     status: partial
     earned: 1.6
+  - id: documentation_present
+    status: partial
+    earned: 2.0
+    detail: pointer liveness 0.5
   - id: agent_skill_present
     status: partial
     earned: 0.75
