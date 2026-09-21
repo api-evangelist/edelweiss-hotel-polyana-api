@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 extends: ../openapi/edelweiss-hotel-polyana-api-openapi.json
 x-provenance:
-  generated: '2026-09-18'
+  generated: '2026-09-21'
   method: generated
   source: >-
     Enhancements layered by the API Evangelist enrichment pipeline over the
@@ -18,6 +18,7 @@ actions:
         llms_full_txt: https://edelweiss-hotel.com.ua/llms-full.txt
         llms_en_txt: https://edelweiss-hotel.com.ua/llms-en.txt
         ai_plugin: https://edelweiss-hotel.com.ua/.well-known/ai-plugin.json
+        mcp_server: https://edelweiss-hotel.com.ua/.well-known/mcp-server.json
         apis_json: https://edelweiss-hotel.com.ua/apis.json
   - target: $.paths./api/ai-info/.get
     description: Note verified caching + CORS behavior observed on the live endpoint.
@@ -30,7 +31,7 @@ actions:
   - target: $.paths./api/quote/.get
     description: >-
       Canonical live path uses a trailing slash (/api/quote/ returns 200; the
-      no-slash form 308-redirects to it).
+      no-slash form 308-redirects to it). Supports extra_bed parameter.
     update:
       x-canonical-path: /api/quote/
   - target: $.paths./api/search/.get
@@ -39,3 +40,13 @@ actions:
       per_page result cap and a uk/en lang selector.
     update:
       x-canonical-path: /api/search/
+  - target: $.paths./api/reviews/.get
+    description: >-
+      Verified live endpoint returning Booking.com guest reviews with ratings.
+      Supports lang and per_page parameters.
+    update:
+      x-runtime:
+        cors: 'Access-Control-Allow-Origin: *'
+        cache_control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800
+        idempotent: true
+        read_only: true

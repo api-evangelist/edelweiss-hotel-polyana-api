@@ -1,0 +1,145 @@
+{
+  "info": {
+    "_postman_id": "c92e1069-424a-4e4b-9721-edelweiss001",
+    "name": "Edelweiss Hotel Polyana Public API",
+    "description": "Postman Collection for Hotel Edelweiss Polyana public REST APIs, structured knowledge feeds, and Google Hotels XML pricing.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Hotel AI Info & Master 2026 Tariffs",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://edelweiss-hotel.com.ua/api/ai-info/",
+          "protocol": "https",
+          "host": [
+            "edelweiss-hotel",
+            "com",
+            "ua"
+          ],
+          "path": [
+            "api",
+            "ai-info",
+            ""
+          ]
+        },
+        "description": "Returns master SSOT room prices, verified Booking.com rating (9.2/10), balneological profile for 'Polyana Kvasova', amenities, and contact info."
+      },
+      "response": []
+    },
+    {
+      "name": "Google Hotel Center XML Feed",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/xml"
+          }
+        ],
+        "url": {
+          "raw": "https://edelweiss-hotel.com.ua/api/google-hotels/",
+          "protocol": "https",
+          "host": [
+            "edelweiss-hotel",
+            "com",
+            "ua"
+          ],
+          "path": [
+            "api",
+            "google-hotels",
+            ""
+          ]
+        },
+        "description": "Real-time Google Hotels XML inventory and pricing feed."
+      },
+      "response": []
+    },
+    {
+      "name": "Public Search API",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://edelweiss-hotel.com.ua/api/search?q=люкс&lang=uk",
+          "protocol": "https",
+          "host": [
+            "edelweiss-hotel",
+            "com",
+            "ua"
+          ],
+          "path": [
+            "api",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "люкс"
+            },
+            {
+              "key": "lang",
+              "value": "uk"
+            }
+          ]
+        },
+        "description": "Search rooms and services."
+      },
+      "response": []
+    },
+    {
+      "name": "OpenAPI 3.1.0 Spec",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://edelweiss-hotel.com.ua/openapi.json",
+          "protocol": "https",
+          "host": [
+            "edelweiss-hotel",
+            "com",
+            "ua"
+          ],
+          "path": [
+            "openapi.json"
+          ]
+        },
+        "description": "OpenAPI 3.1 schema definition."
+      },
+      "response": []
+    },
+    {
+      "name": "APIs.json Manifest",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://edelweiss-hotel.com.ua/apis.json",
+          "protocol": "https",
+          "host": [
+            "edelweiss-hotel",
+            "com",
+            "ua"
+          ],
+          "path": [
+            "apis.json"
+          ]
+        },
+        "description": "APIs.json machine-readable catalog index."
+      },
+      "response": []
+    }
+  ]
+}

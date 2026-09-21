@@ -1,12 +1,10 @@
-generated: '2026-09-18'
+generated: '2026-09-21'
 method: probed
 source: live probes of /.well-known/* on the provider host
 note: >-
-  Only /.well-known/ai-plugin.json returns a real document (HTTP 200, valid JSON,
-  a legacy OpenAI-style AI plugin manifest pointing at the OpenAPI contract). All
-  other probed paths return the site's SPA 404 shell (HTTP 404, ~56 KB text/html)
-  and are recorded as absent. No OAuth/OIDC discovery documents are served because
-  the API requires no authentication.
+  Multiple well-known documents are served. The MCP server config is live
+  (HTTP 200, valid JSON). The AI plugin manifest is also live. No OAuth/OIDC
+  discovery documents are served because the API requires no authentication.
 hosts:
   - host: edelweiss-hotel.com.ua
     documents:
@@ -14,6 +12,10 @@ hosts:
         status: 200
         content_type: application/json
         file: edelweiss-hotel-polyana-api-ai-plugin.json
+      - path: /.well-known/mcp-server.json
+        status: 200
+        content_type: application/json
+        file: edelweiss-hotel-polyana-api-mcp-server.json
       - path: /.well-known/security.txt
         status: 404
       - path: /.well-known/openid-configuration

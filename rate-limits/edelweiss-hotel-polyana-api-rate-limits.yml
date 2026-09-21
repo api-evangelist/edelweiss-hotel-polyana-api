@@ -1,17 +1,64 @@
-generated: '2026-09-18'
+generated: '2026-09-21'
 method: searched
 source: >-
-  Provider docs (api-docs, llms.txt, llms-full.txt) and live response headers on
-  /api/ai-info/ and /api/quote/.
-limit_count: 0
-limits: []
+  Frontend API route headers (RateLimit-Limit: 60) and backend REST route
+  definitions (10/900s for booking POSTs, 20/900s for confirm/cancel, etc.).
+limit_count: 60
+limits:
+  - path: /api/quote/
+    method: GET
+    limit: 60
+    window: 1 minute
+  - path: /api/ai-info/
+    method: GET
+    limit: 60
+    window: 1 minute
+  - path: /api/google-hotels/
+    method: GET
+    limit: 60
+    window: 1 minute
+  - path: /api/search/
+    method: GET
+    limit: 60
+    window: 1 minute
+  - path: /api/reviews
+    method: GET
+    limit: 60
+    window: 1 minute
+  - path: /edelweiss/v1/contact
+    method: POST
+    limit: 10
+    window: 900 seconds
+  - path: /edelweiss/v1/book
+    method: POST
+    limit: 10
+    window: 900 seconds
+  - path: /edelweiss/v1/checkout
+    method: POST
+    limit: 10
+    window: 900 seconds
+  - path: /edelweiss/v1/confirm-booking
+    method: POST
+    limit: 20
+    window: 900 seconds
+  - path: /edelweiss/v1/cancel-booking
+    method: POST
+    limit: 20
+    window: 900 seconds
+  - path: /edelweiss/v1/hold-dates
+    method: POST
+    limit: 30
+    window: 60 seconds
+  - path: /edelweiss/v1/viber-webhook
+    method: POST
+    limit: 20
+    window: 60 seconds
 response_headers:
-  rate_limit_headers_observed: false
-  note: >-
-    No X-RateLimit-*, RateLimit-*, or Retry-After headers were observed on live
-    responses. The only cache/traffic-control signal is Cache-Control
-    (public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800), which
-    encourages CDN caching rather than throttling.
+  rate_limit_headers_observed: true
+  headers:
+    - RateLimit-Limit
+    - RateLimit-Remaining
 note: >-
-  No rate limits are documented and none were observed. The API is anonymous,
-  read-only, and heavily cacheable; an honest zero, not a gap in the search.
+  Public read-only GET endpoints are rate-limited to 60 requests per minute.
+  Booking-related POST endpoints have stricter limits (10-30 per window).
+  Cache-Control headers are also present (public, max-age=300/3600, s-maxage=1800/86400).

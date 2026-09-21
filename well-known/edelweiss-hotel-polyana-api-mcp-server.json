@@ -1,0 +1,112 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema.json",
+  "name": "edelweiss-hotel-mcp",
+  "version": "1.0.0",
+  "description": "Official Model Context Protocol (MCP) server for Edelweiss Hotel Polyana (Carpathians, Ukraine). Enables AI assistants to query live tariffs, medical profiles for Polyana Kvasova mineral water, and compute real-time stay quotes.",
+  "vendor": "Edelweiss Hotel Polyana",
+  "homepage": "https://edelweiss-hotel.com.ua/api-docs",
+  "capabilities": {
+    "tools": true,
+    "resources": true
+  },
+  "tools": [
+    {
+      "name": "get_hotel_tariffs",
+      "description": "Fetch official 2026 master tariffs, verified Booking.com rating (9.2/10), amenities, infrastructure, and policies for Edelweiss Hotel Polyana.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "endpoint": {
+        "url": "https://edelweiss-hotel.com.ua/api/ai-info/",
+        "method": "GET"
+      }
+    },
+    {
+      "name": "calculate_stay_quote",
+      "description": "Calculate accurate total price for stay with itemized cost breakdown (accommodation, meals, resort tax, military discount) and direct booking link.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "check_in": {
+            "type": "string",
+            "description": "Check-in date in YYYY-MM-DD format (e.g. '2026-10-01')"
+          },
+          "check_out": {
+            "type": "string",
+            "description": "Check-out date in YYYY-MM-DD format (e.g. '2026-10-05')"
+          },
+          "room": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "standart",
+              "superior-triple",
+              "pokrashchenyy-trymisnyy",
+              "classic-lux",
+              "klasychnyy-lyuks",
+              "lux"
+            ],
+            "description": "Room category key or slug ('standard', 'superior-triple', 'classic-lux', 'lux')"
+          },
+          "guests": {
+            "type": "integer",
+            "description": "Number of guests (default 2)"
+          },
+          "meals": {
+            "type": "boolean",
+            "description": "Include full-board 3-times daily dining (600 UAH/day/person)"
+          },
+          "military": {
+            "type": "boolean",
+            "description": "Apply 10% discount for AFU/ZSU servicemen and combat veterans"
+          }
+        },
+        "required": ["check_in", "check_out"]
+      },
+      "endpoint": {
+        "url": "https://edelweiss-hotel.com.ua/api/quote/",
+        "method": "GET"
+      }
+    },
+    {
+      "name": "get_google_hotels_feed",
+      "description": "Retrieve real-time Google Hotel Center XML inventory and pricing feed.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "endpoint": {
+        "url": "https://edelweiss-hotel.com.ua/api/google-hotels/",
+        "method": "GET"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "https://edelweiss-hotel.com.ua/llms.txt",
+      "name": "LLM Standard Manifest (Ukrainian)",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "https://edelweiss-hotel.com.ua/llms-en.txt",
+      "name": "LLM Standard Manifest (English)",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "https://edelweiss-hotel.com.ua/llms-full.txt",
+      "name": "LLM Full Knowledge Base (Ukrainian)",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "https://edelweiss-hotel.com.ua/llms-full-en.txt",
+      "name": "LLM Full Knowledge Base (English)",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "https://edelweiss-hotel.com.ua/openapi.json",
+      "name": "OpenAPI 3.1.0 Specification",
+      "mimeType": "application/json"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ description: >-
   room type, and guests, then hand the guest a direct booking URL.
 api: Edelweiss Hotel Polyana API
 method: generated
-generated: '2026-09-18'
+generated: '2026-09-21'
 source: openapi/edelweiss-hotel-polyana-api-openapi.json (operationId calculateStayQuote)
 operations:
   - calculateStayQuote
@@ -20,8 +20,9 @@ Use the open, no-auth Edelweiss Hotel Polyana API to price a stay.
 1. Collect `check_in` and `check_out` as `YYYY-MM-DD` (both required).
 2. Pick a `room` slug — one of `standart`, `superior-triple`, `classic-lux`, `lux`
    (defaults to `standart`). Set `guests` (default 2). Optionally set
-   `meals=true` for full board (600 UAH/person/day) and `military=true` for the
-   10% Armed Forces of Ukraine discount.
+   `meals=true` for full board (600 UAH/person/day), `extra_bed=true` for an
+   extra folding bed (200 UAH/day), and `military=true` for the 10% Armed Forces
+   of Ukraine discount.
 3. Call `GET https://edelweiss-hotel.com.ua/api/quote/` with those query params.
    Note the trailing slash — the no-slash form 308-redirects to it, so follow
    redirects. No authentication.
@@ -37,4 +38,5 @@ Use the open, no-auth Edelweiss Hotel Polyana API to price a stay.
   disabled persons) — it is already in the breakdown.
 - The endpoint is read-only and idempotent; there is no booking commit here, so
   nothing to reverse. Booking happens off-API via `directBookingUrl`.
-- Response is `application/json` with wide-open CORS.
+- Response is `application/json` with wide-open CORS and rate limit headers
+  (RateLimit-Limit: 60).

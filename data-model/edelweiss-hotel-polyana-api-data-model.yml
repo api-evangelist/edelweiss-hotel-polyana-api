@@ -1,4 +1,4 @@
-generated: '2026-09-18'
+generated: '2026-09-21'
 method: derived
 source: openapi/edelweiss-hotel-polyana-api-openapi.json components.schemas
 summary: >-
@@ -30,15 +30,41 @@ entities:
       - capacityGuests
       - hasBalcony / hasBathtub
       - beddingUk / beddingEn
+  - name: Review
+    role: entity
+    description: A single verified guest review from Booking.com.
+    fields:
+      - id
+      - author
+      - rating
+      - source
+      - content
+      - date
+  - name: ReviewsResponse
+    role: value object
+    description: Paginated collection of reviews with aggregate stats.
+    fields:
+      - reviews (Review[])
+      - total
+      - averageRating
+      - source
+      - badge
 relationships:
   - from: HotelAiData
     to: RoomTariff
     type: has_many
     via: roomTariffs2026[]
+  - from: ReviewsResponse
+    to: Review
+    type: has_many
+    via: reviews[]
 identifiers:
   - hotel.id: string slug (e.g. "edelweiss-polyana")
   - RoomTariff.canonicalSlug: booking/quote key (standart, superior-triple, classic-lux, lux)
+  - Review.id: integer (WordPress post ID)
 notes: >-
   The Google Hotels XML feed (getGoogleHotelsXml) and the quote calculator
   (calculateStayQuote) are read projections over the same room/tariff data; they
-  add no new persisted entities.
+  add no new persisted entities. The /api/reviews endpoint returns verified
+  Booking.com reviews. The /api/markdown/room endpoint returns structured
+  Markdown for a specific room category.
