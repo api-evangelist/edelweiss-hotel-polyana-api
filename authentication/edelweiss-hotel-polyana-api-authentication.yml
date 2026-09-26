@@ -1,8 +1,9 @@
-generated: '2026-09-18'
+generated: '2026-09-21'
 method: searched
 source: >-
-  https://edelweiss-hotel.com.ua/openapi.json (no securitySchemes declared) and
-  https://edelweiss-hotel.com.ua/.well-known/ai-plugin.json (auth.type: none)
+  https://edelweiss-hotel.com.ua/openapi.json (no securitySchemes declared),
+  https://edelweiss-hotel.com.ua/.well-known/ai-plugin.json (auth.type: none),
+  and live response headers (Access-Control-Allow-Origin: *).
 summary: >-
   The Edelweiss Hotel Polyana API is fully open. The OpenAPI 3.1.0 contract
   declares no securitySchemes and no security requirements on any operation, and
@@ -12,6 +13,8 @@ summary: >-
 schemes: []
 overall: none
 notes: >-
-  Open public data API (license CC BY-ND 4.0). All five operations are
-  unauthenticated GETs returning JSON or XML. CORS is wide open
-  (Access-Control-Allow-Origin: *), confirmed on /api/ai-info/.
+  Open public data API (license CC BY-ND 4.0). All public operations are
+  unauthenticated GETs returning JSON, XML, or Markdown. CORS is wide open
+  (Access-Control-Allow-Origin: *), confirmed on /api/ai-info/, /api/quote/,
+  and /api/reviews. Rate limiting is applied (60/min for GETs) but requires
+  no credentials.

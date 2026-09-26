@@ -1,11 +1,10 @@
 name: Edelweiss Hotel Polyana API
 description: >-
   Public open REST API and structured data feeds for Edelweiss Hotel Polyana, a 3-star boutique eco-hotel in Polyana,
-  Zakarpattia, Ukraine. Provides real-time room tariffs, hotel info, a Google Hotels XML pricing feed, quote
-  calculation, and LLM knowledge bases. Open access, no authentication.
+  Zakarpattia, Ukraine. Provides real-time room tariffs, hotel info, verified guest reviews, a Google Hotels XML pricing feed, quote calculation, and LLM knowledge bases. Open access, no authentication.
 url: https://raw.githubusercontent.com/api-evangelist/edelweiss-hotel-polyana-api/refs/heads/main/apis.yml
 created: '2026-09-18'
-modified: '2026-09-18'
+modified: '2026-09-21'
 specificationVersion: '0.21'
 tags:
   - Hotels
@@ -34,8 +33,8 @@ tags_raw:
 apis:
   - name: Edelweiss Hotel Polyana API
     description: >-
-      Official open REST API (JSON + XML) for Edelweiss Hotel Polyana with OpenAPI 3.1.0 contract, hotel info, room
-      tariffs, real-time quotes, Google Hotels XML feed, and LLM knowledge manifests. No authentication required.
+      Official open REST API (JSON + XML + Markdown) for Edelweiss Hotel Polyana with OpenAPI 3.1.0 contract, hotel info, room
+      tariffs, real-time quotes, verified guest reviews, Google Hotels XML feed, and LLM knowledge manifests. No authentication required.
     humanURL: https://edelweiss-hotel.com.ua/api-docs
     baseURL: https://edelweiss-hotel.com.ua
     tags:
@@ -75,6 +74,8 @@ apis:
         url: llms/edelweiss-hotel-polyana-api-llms.txt
       - type: Overlay
         url: overlays/edelweiss-hotel-polyana-api-openapi-overlay.yaml
+      - type: MCPServer
+        url: https://edelweiss-hotel.com.ua/.well-known/mcp-server.json
 maintainers:
   - FN: Edelweiss Hotel Polyana Administration
     email: welcome@edelweiss-hotel.com.ua
@@ -120,7 +121,7 @@ common:
 - type: DomainSecurity
   url: security/edelweiss-hotel-polyana-api-domain-security.yml
 x-enrichment:
-  date: '2026-09-18'
+  date: '2026-09-21'
   status: enriched
   artifacts_added: 17
   pass: local-v3

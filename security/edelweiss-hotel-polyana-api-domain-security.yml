@@ -1,4 +1,4 @@
-generated: '2026-09-18'
+generated: '2026-09-21'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -14,3 +14,7 @@ domains:
   caa: []
   spf: true
   dmarc: false
+notes: >-
+  TLS 1.3 with HSTS (1 year). No authentication required for any public API
+  endpoint. CORS is wide open (Access-Control-Allow-Origin: *). No sensitive
+  data exposed in public responses.

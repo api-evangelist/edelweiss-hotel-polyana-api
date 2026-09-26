@@ -1,15 +1,16 @@
-generated: '2026-09-18'
+generated: '2026-09-21'
 method: searched
 source: >-
   Derived from the live OpenAPI contract and fetched artifacts:
   https://edelweiss-hotel.com.ua/openapi.json,
   https://edelweiss-hotel.com.ua/api/google-hotels/,
-  https://edelweiss-hotel.com.ua/llms.txt
+  https://edelweiss-hotel.com.ua/llms.txt,
+  https://edelweiss-hotel.com.ua/api/reviews
 conformance:
   - id: openapi-3.1.0
     conforms: true
     evidence: >-
-      openapi.json declares "openapi": "3.1.0" with a valid paths object (5
+      openapi.json declares "openapi": "3.1.0" with a valid paths object (7
       operations). Fetched HTTP 200, application/json.
   - id: llmstxt.org
     conforms: true
@@ -17,6 +18,17 @@ conformance:
       /llms.txt (HTTP 200, text/plain) follows the llmstxt.org structure — H1
       title, blockquote summary, and sectioned link lists (Main Pages, Room
       Categories, Optional). English variant at /llms-en.txt.
+  - id: google-hotel-center-price-feed
+    standard: Google Hotel Center / Hotel Price Feed XML
+    conforms: true
+    evidence: >-
+      GET /api/google-hotels/ returns HTTP 200 application/xml with the Google
+      Hotel Center listing schema: <listings> root, <entity type="hotel">,
+      hotel_id, address components, geo, <roomtypes>/<roomtype> with
+      <rate currency="UAH">. This is the industry-standard feed format Google
+      Hotels and OTA aggregators ingest, letting an integrator consume rates with
+      no bespoke connector.
+    location: openapi.json paths./api/google-hotels/ ; live at /api/google-hotels/
 domain_standard:
   - id: google-hotel-center-price-feed
     standard: Google Hotel Center / Hotel Price Feed XML

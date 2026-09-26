@@ -3,7 +3,7 @@
   "info": {
     "title": "Edelweiss Hotel Polyana API",
     "version": "1.0.0",
-    "description": "Official public REST API and structured data feeds for Hotel Edelweiss (Polyana resort, Zakarpattia, Ukraine). Provides real-time room tariffs (SSOT 2026), verified Booking.com rating (9.1/10), balneological profile for 'Polyana Kvasova' mineral water, Google Hotel Center XML feed, and search services.",
+    "description": "Official public REST API and structured data feeds for Hotel Edelweiss (Polyana resort, Zakarpattia, Ukraine). Provides real-time room tariffs (SSOT 2026), verified Booking.com rating (9.2/10), balneological profile for 'Polyana Kvasova' mineral water, Google Hotel Center XML feed, search services, and verified guest reviews.",
     "contact": {
       "name": "Edelweiss Hotel Administration",
       "url": "https://edelweiss-hotel.com.ua/contacts",
@@ -39,11 +39,11 @@
     }
   ],
   "paths": {
-    "/api/quote": {
+    "/api/quote/": {
       "get": {
         "tags": ["Availability & Pricing"],
         "summary": "Real-time Room Rate & Stay Quote Calculator",
-        "description": "Calculates exact cost for a stay given check-in, check-out dates, room type, and optional full-board meals or military discounts.",
+        "description": "Calculates exact cost for a stay given check-in, check-out dates, room type, and optional full-board meals, extra bed, or military discounts.",
         "operationId": "calculateStayQuote",
         "parameters": [
           {
@@ -82,6 +82,13 @@
             "schema": { "type": "boolean", "default": false }
           },
           {
+            "name": "extra_bed",
+            "in": "query",
+            "required": false,
+            "description": "Include extra folding bed (200 UAH/day)",
+            "schema": { "type": "boolean", "default": false }
+          },
+          {
             "name": "military",
             "in": "query",
             "required": false,
@@ -91,7 +98,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Detailed quote calculation with itemized cost breakdown and direct booking URL"
+            "description": "Detailed quote calculation with itemized cost breakdown and direct booking URL",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": { "type": "string", "example": "*" },
+                "description": "CORS header permitting cross-origin requests from any client"
+              },
+              "RateLimit-Limit": {
+                "schema": { "type": "string", "example": "60" },
+                "description": "Maximum requests per minute"
+              },
+              "Cache-Control": {
+                "schema": { "type": "string", "example": "public, max-age=300, s-maxage=1800, stale-while-revalidate=86400" },
+                "description": "HTTP caching directive"
+              }
+            }
           }
         }
       }
@@ -100,7 +121,7 @@
       "get": {
         "tags": ["Hotel Information"],
         "summary": "Comprehensive Hotel Information & Room Tariffs (JSON)",
-        "description": "Returns full master SSOT hotel metadata, room tariffs for 2026, verified Booking.com rating (9.1/10 from 142 reviews), balneological medical profile ('Polyana Kvasova' mineral water), amenities, infrastructure, and policies.",
+        "description": "Returns full master SSOT hotel metadata, room tariffs for 2026, verified Booking.com rating (9.2/10), balneological medical profile ('Polyana Kvasova' mineral water), amenities, infrastructure, and policies.",
         "operationId": "getHotelAiInfo",
         "responses": {
           "200": {
@@ -127,17 +148,17 @@
                     "nameEn": "Edelweiss Hotel Polyana",
                     "stars": 3,
                     "totalRooms": 10,
-                    "floors": 4,
+                    "floors": 3,
                     "website": "https://edelweiss-hotel.com.ua",
                     "directBookingUrl": "https://edelweiss-hotel.com.ua/booking"
                   },
                   "rating": {
-                    "booking": 9.1,
-                    "google": 9.1,
+                    "booking": 9.2,
+                    "google": 9.2,
                     "maxRating": 10,
                     "totalReviews": 142,
-                    "badge": "9.1 / 10 Superb",
-                    "source": "Booking.com verified guest reviews (142 reviews, 9.1 score)"
+                    "badge": "9.2 / 10 Superb",
+                    "source": "Booking.com verified guest reviews (142 reviews, 9.2 score)"
                   },
                   "location": {
                     "addressUk": "вул. Курортно-Бічна, 4, с. Поляна, Мукачівський р-н, Закарпатська обл., 89313",
@@ -159,10 +180,17 @@
                       "canonicalSlug": "standart",
                       "nameUk": "Стандартний двомісний",
                       "nameEn": "Standard Double or Twin",
+                      "bookingComAliasUk": "",
+                      "bookingComAliasEn": "",
+                      "urlUk": "https://edelweiss-hotel.com.ua/rooms/standart/",
+                      "urlEn": "https://edelweiss-hotel.com.ua/en/rooms/standart/",
                       "pricePerNightUah": 1100,
                       "areaSqm": 18,
                       "capacityGuests": 2,
-                      "hasBalcony": false
+                      "hasBalcony": false,
+                      "hasBathtub": false,
+                      "beddingUk": "1 двоспальне або 2 односпальні ліжка",
+                      "beddingEn": "1 double bed or 2 single beds"
                     },
                     {
                       "key": "superior-triple",
@@ -171,10 +199,15 @@
                       "nameEn": "Superior Triple",
                       "bookingComAliasUk": "Студіо",
                       "bookingComAliasEn": "Studio",
+                      "urlUk": "https://edelweiss-hotel.com.ua/rooms/pokrashchenyy-trymisnyy/",
+                      "urlEn": "https://edelweiss-hotel.com.ua/en/rooms/pokrashchenyy-trymisnyy/",
                       "pricePerNightUah": 1400,
-                      "areaSqm": 32,
+                      "areaSqm": 50,
                       "capacityGuests": 4,
-                      "hasBalcony": true
+                      "hasBalcony": true,
+                      "hasBathtub": false,
+                      "beddingUk": "1 двоспальне ліжко + розкладний диван",
+                      "beddingEn": "1 double bed + sofa bed"
                     },
                     {
                       "key": "classic-lux",
@@ -183,20 +216,32 @@
                       "nameEn": "Classic Lux",
                       "bookingComAliasUk": "Люкс+",
                       "bookingComAliasEn": "Lux+",
+                      "urlUk": "https://edelweiss-hotel.com.ua/rooms/klasychnyy-lyuks/",
+                      "urlEn": "https://edelweiss-hotel.com.ua/en/rooms/klasychnyy-lyuks/",
                       "pricePerNightUah": 1600,
-                      "areaSqm": 38,
+                      "areaSqm": 40,
                       "capacityGuests": 4,
-                      "hasBalcony": true
+                      "hasBalcony": true,
+                      "hasBathtub": false,
+                      "beddingUk": "King Size + розкладний диван",
+                      "beddingEn": "King Size + sofa bed"
                     },
                     {
                       "key": "lux",
                       "canonicalSlug": "lux",
                       "nameUk": "Люкс",
                       "nameEn": "Lux Suite",
+                      "bookingComAliasUk": "",
+                      "bookingComAliasEn": "",
+                      "urlUk": "https://edelweiss-hotel.com.ua/rooms/lux/",
+                      "urlEn": "https://edelweiss-hotel.com.ua/en/rooms/lux/",
                       "pricePerNightUah": 1800,
                       "areaSqm": 40,
                       "capacityGuests": 4,
-                      "hasBalcony": true
+                      "hasBalcony": false,
+                      "hasBathtub": false,
+                      "beddingUk": "King Size + розкладний диван",
+                      "beddingEn": "King Size + sofa bed"
                     }
                   ]
                 }
@@ -219,7 +264,7 @@
               "application/xml": {
                 "schema": {
                   "type": "string",
-                  "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<listings>\n  <entity type=\"hotel\">\n    <hotel_id>edelweiss-polyana</hotel_id>\n    <name>Edelweiss Hotel Polyana</name>\n    <roomtypes>\n      <roomtype id=\"standard-double\"><rate currency=\"UAH\">1100</rate></roomtype>\n    </roomtypes>\n  </entity>\n</listings>"
+                  "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<listings>\n  <entity type=\"hotel\">\n    <hotel_id>edelweiss-polyana</hotel_id>\n    <name>Edelweiss Hotel Polyana</name>\n    <roomtypes>\n      <roomtype id=\"standard-double\"><rate currency=\"UAH\">1100</rate></roomtype>\n      <roomtype id=\"superior-triple\"><rate currency=\"UAH\">1400</rate></roomtype>\n      <roomtype id=\"classic-lux\"><rate currency=\"UAH\">1600</rate></roomtype>\n      <roomtype id=\"lux\"><rate currency=\"UAH\">1800</rate></roomtype>\n    </roomtypes>\n  </entity>\n</listings>"
                 }
               }
             }
@@ -227,7 +272,7 @@
         }
       }
     },
-    "/api/search": {
+    "/api/search/": {
       "get": {
         "tags": ["Search"],
         "summary": "Live Search across Rooms & Hotel Services",
@@ -280,6 +325,86 @@
                     "query": { "type": "string" }
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reviews": {
+      "get": {
+        "tags": ["Hotel Information"],
+        "summary": "Verified Guest Reviews from Booking.com",
+        "description": "Returns verified guest reviews from Booking.com with ratings, sources, and review content.",
+        "operationId": "getReviews",
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language code ('uk' or 'en')",
+            "schema": { "type": "string", "enum": ["uk", "en"], "default": "uk" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of reviews to return",
+            "schema": { "type": "integer", "default": 100 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Verified guest reviews array",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": { "type": "string", "example": "*" },
+                "description": "CORS header permitting cross-origin requests from any client"
+              },
+              "Cache-Control": {
+                "schema": { "type": "string", "example": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800" },
+                "description": "HTTP caching directive"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/markdown/room": {
+      "get": {
+        "tags": ["AI & LLM Manifests"],
+        "summary": "Per-Room Markdown Specification for LLMs",
+        "description": "Returns a structured Markdown document for a specific room category, suitable for LLM consumption and RAG search.",
+        "operationId": "getRoomMarkdown",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": true,
+            "description": "Room category slug ('standart', 'pokrashchenyy-trymisnyy', 'klasychnyy-lyuks', 'lux')",
+            "schema": { "type": "string", "example": "standart" }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language code ('uk' or 'en')",
+            "schema": { "type": "string", "enum": ["uk", "en"], "default": "uk" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Structured Markdown room specification",
+            "content": {
+              "text/markdown": {
+                "schema": { "type": "string" }
               }
             }
           }
@@ -397,6 +522,29 @@
           "hasBathtub": { "type": "boolean" },
           "beddingUk": { "type": "string" },
           "beddingEn": { "type": "string" }
+        }
+      },
+      "ReviewsResponse": {
+        "type": "object",
+        "properties": {
+          "reviews": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer" },
+                "author": { "type": "string" },
+                "rating": { "type": "number" },
+                "source": { "type": "string" },
+                "content": { "type": "string" },
+                "date": { "type": "string", "format": "date-time" }
+              }
+            }
+          },
+          "total": { "type": "integer" },
+          "averageRating": { "type": "number" },
+          "source": { "type": "string" },
+          "badge": { "type": "string" }
         }
       }
     }

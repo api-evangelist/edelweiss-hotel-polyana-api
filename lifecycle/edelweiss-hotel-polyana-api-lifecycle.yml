@@ -1,4 +1,4 @@
-generated: '2026-09-18'
+generated: '2026-09-21'
 method: searched
 source: >-
   https://edelweiss-hotel.com.ua/openapi.json (info.version) and provider site
@@ -19,6 +19,6 @@ sla:
 status_page:
   present: false
 notes: >-
-  A tiny open public-data API from a 10-room hotel; no formal deprecation policy,
+  A small open public-data API from a 10-room hotel; no formal deprecation policy,
   SLA, or status page is published, and none would be expected at this scale.
   Honest absence — no StatusPage or Deprecation pointer is emitted.

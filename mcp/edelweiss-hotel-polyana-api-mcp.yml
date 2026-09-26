@@ -1,40 +1,48 @@
-generated: '2026-09-18'
-method: derived
+generated: '2026-09-21'
+method: probed
 source: >-
-  Derived from openapi/edelweiss-hotel-polyana-api-openapi.json operations. No
-  official or hosted MCP server was found (searched the provider site, llms.txt,
-  and llms-full.txt; none references MCP).
-status: candidate
+  Live probe of https://edelweiss-hotel.com.ua/.well-known/mcp-server.json
+  (HTTP 200, valid JSON, 3 tools + 5 resources).
+status: verified
 name: edelweiss-hotel-polyana
 description: >-
-  Candidate MCP tool list derived from the hotel's open REST API. No MCP server
-  is published by the provider; these tools would map 1:1 onto the existing
-  unauthenticated GET operations if a server were built.
+  Official Model Context Protocol (MCP) server for Edelweiss Hotel Polyana.
+  Live at /.well-known/mcp-server.json with 3 tools and 5 resources.
+  Enables AI assistants to query live tariffs, medical profiles for Polyana
+  Kvasova mineral water, and compute real-time stay quotes.
 deployment:
-  mode: none
+  mode: well-known
   auth: none
-  verified: derived
-  note: >-
-    No MCP server exists. This is a derived candidate only; endpoint and install
-    are intentionally empty. Do not treat as a live agent surface.
+  verified: live
+  endpoint: https://edelweiss-hotel.com.ua/.well-known/mcp-server.json
 tools:
-  - name: get_hotel_ai_info
+  - name: get_hotel_tariffs
     rest: getHotelAiInfo
     description: >-
-      Return full hotel metadata, 2026 room tariffs, verified Booking.com rating
-      (9.1/10), and the 'Polyana Kvasova' balneological profile.
+      Return full hotel metadata, 2026 room tariffs, verified Booking.com
+      rating (9.2/10), and the 'Polyana Kvasova' balneological profile.
   - name: calculate_stay_quote
     rest: calculateStayQuote
     description: >-
       Calculate an itemized stay cost given check-in, check-out, room type,
       guests, optional full board and military discount; returns a direct
       booking URL.
-  - name: get_google_hotels_xml
+  - name: get_google_hotels_feed
     rest: getGoogleHotelsXml
     description: Return the real-time Google Hotel Center XML pricing/listing feed.
-  - name: search_content
-    rest: searchContent
-    description: Search rooms, services, FAQs, and articles (uk/en).
-  - name: get_llms_txt
-    rest: getLlmsTxt
-    description: Return the llmstxt.org knowledge manifest.
+resources:
+  - uri: https://edelweiss-hotel.com.ua/llms.txt
+    name: LLM Standard Manifest (Ukrainian)
+    mimeType: text/markdown
+  - uri: https://edelweiss-hotel.com.ua/llms-en.txt
+    name: LLM Standard Manifest (English)
+    mimeType: text/markdown
+  - uri: https://edelweiss-hotel.com.ua/llms-full.txt
+    name: LLM Full Knowledge Base (Ukrainian)
+    mimeType: text/markdown
+  - uri: https://edelweiss-hotel.com.ua/llms-full-en.txt
+    name: LLM Full Knowledge Base (English)
+    mimeType: text/markdown
+  - uri: https://edelweiss-hotel.com.ua/openapi.json
+    name: OpenAPI 3.1.0 Specification
+    mimeType: application/json
