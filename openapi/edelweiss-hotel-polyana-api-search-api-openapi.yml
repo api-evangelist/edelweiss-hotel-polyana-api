@@ -1,0 +1,76 @@
+openapi: 3.2.0
+info:
+  title: Edelweiss Hotel Polyana Search API
+  version: 1.0.0
+  description: Official public REST API and structured data feeds for Hotel Edelweiss (Polyana resort, Zakarpattia, Ukraine). Provides real-time room tariffs (SSOT 2026), verified Booking.com rating (9.1/10), balneological profile for 'Polyana Kvasova' mineral water, Google Hotel Center XML feed, and search services.
+  contact:
+    name: Edelweiss Hotel Administration
+    url: https://edelweiss-hotel.com.ua/contacts
+    email: welcome@edelweiss-hotel.com.ua
+  license:
+    name: CC BY-ND 4.0
+    url: https://creativecommons.org/licenses/by-nd/4.0/
+servers:
+- url: https://edelweiss-hotel.com.ua
+  description: Production server
+tags:
+- name: Search
+  description: Public content and room search query endpoint
+paths:
+  /api/search:
+    get:
+      tags:
+      - Search
+      summary: Live Search across Rooms & Hotel Services
+      description: Performs fast search across published rooms, services, FAQs, and articles.
+      operationId: searchContent
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Search query string (minimum 2 characters)
+        schema:
+          type: string
+          example: люкс
+      - name: lang
+        in: query
+        required: false
+        description: Language code ('uk' or 'en')
+        schema:
+          type: string
+          enum:
+          - uk
+          - en
+          default: uk
+      - name: per_page
+        in: query
+        required: false
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: Search results array
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        url:
+                          type: string
+                        type:
+                          type: string
+                  total:
+                    type: integer
+                  query:
+                    type: string

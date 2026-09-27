@@ -1,0 +1,33 @@
+openapi: 3.2.0
+info:
+  title: Edelweiss Hotel Polyana AI & LLM Manifests API
+  version: 1.0.0
+  description: Official public REST API and structured data feeds for Hotel Edelweiss (Polyana resort, Zakarpattia, Ukraine). Provides real-time room tariffs (SSOT 2026), verified Booking.com rating (9.1/10), balneological profile for 'Polyana Kvasova' mineral water, Google Hotel Center XML feed, and search services.
+  contact:
+    name: Edelweiss Hotel Administration
+    url: https://edelweiss-hotel.com.ua/contacts
+    email: welcome@edelweiss-hotel.com.ua
+  license:
+    name: CC BY-ND 4.0
+    url: https://creativecommons.org/licenses/by-nd/4.0/
+servers:
+- url: https://edelweiss-hotel.com.ua
+  description: Production server
+tags:
+- name: AI & LLM Manifests
+  description: Structured Markdown and text discovery endpoints for AI agents
+paths:
+  /llms.txt:
+    get:
+      tags:
+      - AI & LLM Manifests
+      summary: LLM Standard Knowledge Manifest (Markdown)
+      description: Structured Markdown context file conforming to the llmstxt.org specification for LLMs, ChatGPT, Claude, and Perplexity.
+      operationId: getLlmsTxt
+      responses:
+        '200':
+          description: Plaintext Markdown content
+          content:
+            text/plain:
+              schema:
+                type: string
