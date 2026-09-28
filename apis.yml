@@ -143,3 +143,14 @@ x-enrichment:
   status: enriched
   artifacts_added: 17
   pass: local-v3
+x-correction-request:
+  requested: '2026-09-28'
+  source:
+  - https://github.com/api-evangelist/edelweiss-hotel-polyana-api/pull/1
+  request: 'PR #1 (kyivinua-max, 2026-09-21), verified live 2026-09-28; not merged (it predates the 4-API split).
+    Capture: GET https://edelweiss-hotel.com.ua/api/reviews/ (JSON reviews; /api/reviews redirects 308); GET https://edelweiss-hotel.com.ua/api/markdown/room
+    (text/markdown); MCP server https://edelweiss-hotel.com.ua/api/mcp/ (streamable-http, 4 tools incl. search_faqs,
+    6 resources; descriptor /.well-known/mcp-server.json); /en/llms.txt and /llms-full.txt. FINDINGS: /openapi.json,
+    /openapi.yaml and /apis.json return 200 with a JSON/YAML content-type but serve an HTML page (soft-200) -- no
+    published contract; /.well-known/ai-plugin.json is 404. The PR''s 60/min rate limit is not evidenced by headers;
+    do not record it.'
