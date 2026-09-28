@@ -1,7 +1,7 @@
 {
   "provider": "edelweiss-hotel-polyana-api",
   "sources": [
-    "edelweiss-hotel-polyana-api-openapi.json"
+    "_original/edelweiss-hotel-polyana-api-openapi.json"
   ],
   "outputs": [
     "edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml",
@@ -9,16 +9,18 @@
     "edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml",
     "edelweiss-hotel-polyana-api-search-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/edelweiss-hotel-polyana-api-openapi.json"
-  ],
+  "archived": [],
   "errors": [],
-  "warnings": [
-    "no openapi/_original/ archive: this run re-split PREVIOUSLY REFINED output, so any base URL it carries is inherited from an earlier pass rather than read from a document the provider published"
-  ],
+  "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "edelweiss-hotel-polyana-api-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: written (+4 apis, 4 total)"
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edelweiss-hotel-polyana-api-availability-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edelweiss-hotel-polyana-api-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

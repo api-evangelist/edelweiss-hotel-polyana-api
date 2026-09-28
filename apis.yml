@@ -1,36 +1,102 @@
 name: Edelweiss Hotel Polyana API
-description: >-
-  Public open REST API and structured data feeds for Edelweiss Hotel Polyana, a 3-star boutique eco-hotel in Polyana,
-  Zakarpattia, Ukraine. Provides real-time room tariffs, hotel info, a Google Hotels XML pricing feed, quote
-  calculation, and LLM knowledge bases. Open access, no authentication.
+
+image: https://edelweiss-hotel.com.ua/images/og-main.webp
+
+description: Public open REST API and structured data feeds for Edelweiss Hotel Polyana, a 3-star boutique eco-hotel in Polyana, Zakarpattia,
+  Ukraine. Provides real-time room tariffs, hotel info, a Google Hotels XML pricing feed, quote calculation, and LLM knowledge bases. Open access,
+  no authentication.
+
 url: https://raw.githubusercontent.com/api-evangelist/edelweiss-hotel-polyana-api/refs/heads/main/apis.yml
+
 created: '2026-09-18'
+
 modified: '2026-09-18'
+
 specificationVersion: '0.21'
+
 tags:
-  - Hotels
-  - Hospitality
-  - Travel
-  - Tourism
-  - Ukraine
-  - Carpathians
-  - Mineral Water
-  - Balneology
-  - Booking
-  - Room Rates
-  - google-hotels
+- Hotels
+- Hospitality
+- Travel
+- Tourism
+- Ukraine
+- Carpathians
+- Mineral Water
+- Balneology
+- Booking
+- Room Rates
+- google-hotels
+
 tags_raw:
-  - Hotels
-  - Hospitality
-  - Travel
-  - Tourism
-  - Ukraine
-  - Carpathians
-  - Mineral Water
-  - Balneology
-  - Booking
-  - Room Rates
-  - Google Hotels
+- Hotels
+- Hospitality
+- Travel
+- Tourism
+- Ukraine
+- Carpathians
+- Mineral Water
+- Balneology
+- Booking
+- Room Rates
+- Google Hotels
+
+maintainers:
+- FN: Edelweiss Hotel Polyana Administration
+  email: welcome@edelweiss-hotel.com.ua
+  url: https://edelweiss-hotel.com.ua
+
+common:
+- type: AgenticAccess
+  url: agentic-access/edelweiss-hotel-polyana-api-agentic-access.yml
+- type: Spectral
+  url: rules/edelweiss-hotel-polyana-api-rules.yml
+- type: JSONLD
+  url: json-ld/edelweiss-hotel-polyana-api-context.jsonld
+- type: Vocabulary
+  url: vocabulary/edelweiss-hotel-polyana-api-vocabulary.yml
+- type: Deprecation
+  url: lifecycle/edelweiss-hotel-polyana-api-lifecycle.yml
+- type: Hosts
+  url: hosts/edelweiss-hotel-polyana-api-hosts.yml
+- type: DeveloperPortal
+  url: https://api.edelweiss-hotel.com.ua\
+- type: Overlay
+  url: overlays/edelweiss-hotel-polyana-api-openapi-overlay.yaml
+- type: Website
+  url: https://edelweiss-hotel.com.ua/
+- type: Documentation
+  url: https://edelweiss-hotel.com.ua/api-docs
+- type: Pricing
+  url: https://edelweiss-hotel.com.ua/prices/
+- type: Support
+  url: https://edelweiss-hotel.com.ua/contacts/
+- type: TermsOfService
+  url: https://edelweiss-hotel.com.ua/terms/
+- type: PrivacyPolicy
+  url: https://edelweiss-hotel.com.ua/privacy/
+- type: Authentication
+  url: authentication/edelweiss-hotel-polyana-api-authentication.yml
+- type: WellKnown
+  url: well-known/edelweiss-hotel-polyana-api-well-known.yml
+- type: MCPServer
+  url: mcp/edelweiss-hotel-polyana-api-mcp.yml
+- type: Conformance
+  url: conformance/edelweiss-hotel-polyana-api-conformance.yml
+- type: Conventions
+  url: conventions/edelweiss-hotel-polyana-api-conventions.yml
+- type: DataModel
+  url: data-model/edelweiss-hotel-polyana-api-data-model.yml
+- type: Lifecycle
+  url: lifecycle/edelweiss-hotel-polyana-api-lifecycle.yml
+- type: Plans
+  url: plans/edelweiss-hotel-polyana-api-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/edelweiss-hotel-polyana-api-rate-limits.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/edelweiss-hotel-polyana-api-domain-security.yml
+
 apis:
 - aid: edelweiss-hotel-polyana-api:edelweiss-hotel-polyana-api-ai-llm-manifests-api
   name: Edelweiss Hotel Polyana API AI & LLM Manifests API
@@ -77,6 +143,8 @@ apis:
     url: https://edelweiss-hotel.com.ua/llms.txt
   - type: LLMsTxt
     url: llms/edelweiss-hotel-polyana-api-llms.txt
+  - type: JSONSchema
+    url: json-schema/edelweiss-hotel-polyana-api-hotel-ai-data-schema.json
 - aid: edelweiss-hotel-polyana-api:edelweiss-hotel-polyana-api-search-api
   name: Edelweiss Hotel Polyana API Search API
   description: Public content and room search query endpoint
@@ -92,65 +160,25 @@ apis:
     url: https://edelweiss-hotel.com.ua/llms.txt
   - type: LLMsTxt
     url: llms/edelweiss-hotel-polyana-api-llms.txt
-maintainers:
-  - FN: Edelweiss Hotel Polyana Administration
-    email: welcome@edelweiss-hotel.com.ua
-    url: https://edelweiss-hotel.com.ua
+
 x-generated:
   by: apis.io/add
   model: claude-opus-4-8
   confidence: 97
   at: '2026-09-18T20:30:10.765Z'
-common:
-- type: Overlay
-  url: overlays/edelweiss-hotel-polyana-api-openapi-overlay.yaml
-- type: Website
-  url: https://edelweiss-hotel.com.ua/
-- type: Documentation
-  url: https://edelweiss-hotel.com.ua/api-docs
-- type: Pricing
-  url: https://edelweiss-hotel.com.ua/prices/
-- type: Support
-  url: https://edelweiss-hotel.com.ua/contacts/
-- type: TermsOfService
-  url: https://edelweiss-hotel.com.ua/terms/
-- type: PrivacyPolicy
-  url: https://edelweiss-hotel.com.ua/privacy/
-- type: Authentication
-  url: authentication/edelweiss-hotel-polyana-api-authentication.yml
-- type: WellKnown
-  url: well-known/edelweiss-hotel-polyana-api-well-known.yml
-- type: MCPServer
-  url: mcp/edelweiss-hotel-polyana-api-mcp.yml
-- type: Conformance
-  url: conformance/edelweiss-hotel-polyana-api-conformance.yml
-- type: Conventions
-  url: conventions/edelweiss-hotel-polyana-api-conventions.yml
-- type: DataModel
-  url: data-model/edelweiss-hotel-polyana-api-data-model.yml
-- type: Lifecycle
-  url: lifecycle/edelweiss-hotel-polyana-api-lifecycle.yml
-- type: Plans
-  url: plans/edelweiss-hotel-polyana-api-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/edelweiss-hotel-polyana-api-rate-limits.yml
-- type: AgentSkill
-  url: skills/_index.yml
-- type: DomainSecurity
-  url: security/edelweiss-hotel-polyana-api-domain-security.yml
-x-enrichment:
-  date: '2026-09-18'
-  status: enriched
-  artifacts_added: 17
-  pass: local-v3
+
 x-correction-request:
   requested: '2026-09-28'
   source:
   - https://github.com/api-evangelist/edelweiss-hotel-polyana-api/pull/1
-  request: 'PR #1 (kyivinua-max, 2026-09-21), verified live 2026-09-28; not merged (it predates the 4-API split).
-    Capture: GET https://edelweiss-hotel.com.ua/api/reviews/ (JSON reviews; /api/reviews redirects 308); GET https://edelweiss-hotel.com.ua/api/markdown/room
-    (text/markdown); MCP server https://edelweiss-hotel.com.ua/api/mcp/ (streamable-http, 4 tools incl. search_faqs,
-    6 resources; descriptor /.well-known/mcp-server.json); /en/llms.txt and /llms-full.txt. FINDINGS: /openapi.json,
-    /openapi.yaml and /apis.json return 200 with a JSON/YAML content-type but serve an HTML page (soft-200) -- no
-    published contract; /.well-known/ai-plugin.json is 404. The PR''s 60/min rate limit is not evidenced by headers;
-    do not record it.'
+  request: 'PR #1 (kyivinua-max, 2026-09-21), verified live 2026-09-28; not merged (it predates the 4-API split). Capture: GET https://edelweiss-hotel.com.ua/api/reviews/
+    (JSON reviews; /api/reviews redirects 308); GET https://edelweiss-hotel.com.ua/api/markdown/room (text/markdown); MCP server https://edelweiss-hotel.com.ua/api/mcp/
+    (streamable-http, 4 tools incl. search_faqs, 6 resources; descriptor /.well-known/mcp-server.json); /en/llms.txt and /llms-full.txt. FINDINGS:
+    /openapi.json, /openapi.yaml and /apis.json return 200 with a JSON/YAML content-type but serve an HTML page (soft-200) -- no published contract;
+    /.well-known/ai-plugin.json is 404. The PR''s 60/min rate limit is not evidenced by headers; do not record it.'
+x-enrichment:
+  date: '2026-09-28'
+  status: enriched
+  artifacts_added: 9
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

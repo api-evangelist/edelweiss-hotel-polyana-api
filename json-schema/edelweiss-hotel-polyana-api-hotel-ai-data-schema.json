@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/edelweiss-hotel-polyana-api/main/json-schema/edelweiss-hotel-polyana-api-hotel-ai-data-schema.json",
+  "title": "HotelAiData",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml#/components/schemas/HotelAiData",
+  "type": "object",
+  "properties": {
+    "hotel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nameUk": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "stars": {
+          "type": "integer"
+        },
+        "totalRooms": {
+          "type": "integer"
+        },
+        "floors": {
+          "type": "integer"
+        },
+        "descriptionUk": {
+          "type": "string"
+        },
+        "descriptionEn": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri"
+        },
+        "directBookingUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "rating": {
+      "type": "object",
+      "properties": {
+        "booking": {
+          "type": "number"
+        },
+        "google": {
+          "type": "number"
+        },
+        "maxRating": {
+          "type": "number"
+        },
+        "totalReviews": {
+          "type": "integer"
+        },
+        "badge": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "addressUk": {
+          "type": "string"
+        },
+        "addressEn": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "geoCoordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "roomTariffs2026": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RoomTariff"
+      }
+    },
+    "extraServices": {
+      "type": "object",
+      "properties": {
+        "fullBoardPriceUah": {
+          "type": "number"
+        },
+        "extraBedPriceUah": {
+          "type": "number"
+        },
+        "resortTaxUah": {
+          "type": "number"
+        }
+      }
+    },
+    "medicalProfile": {
+      "type": "object",
+      "properties": {
+        "mineralWater": {
+          "type": "string"
+        },
+        "pumpRoomDistanceMeters": {
+          "type": "integer"
+        },
+        "indications": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "RoomTariff": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "canonicalSlug": {
+          "type": "string"
+        },
+        "nameUk": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "bookingComAliasUk": {
+          "type": "string"
+        },
+        "bookingComAliasEn": {
+          "type": "string"
+        },
+        "urlUk": {
+          "type": "string",
+          "format": "uri"
+        },
+        "urlEn": {
+          "type": "string",
+          "format": "uri"
+        },
+        "pricePerNightUah": {
+          "type": "number"
+        },
+        "areaSqm": {
+          "type": "number"
+        },
+        "capacityGuests": {
+          "type": "integer"
+        },
+        "hasBalcony": {
+          "type": "boolean"
+        },
+        "hasBathtub": {
+          "type": "boolean"
+        },
+        "beddingUk": {
+          "type": "string"
+        },
+        "beddingEn": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

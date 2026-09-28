@@ -2,7 +2,7 @@ overlay: 1.0.0
 info:
   title: Edelweiss Hotel Polyana API — API Evangelist enrichment overlay
   version: 1.0.0
-extends: ../openapi/edelweiss-hotel-polyana-api-openapi.json
+extends: ../openapi/_original/edelweiss-hotel-polyana-api-openapi.json
 x-provenance:
   generated: '2026-09-18'
   method: generated

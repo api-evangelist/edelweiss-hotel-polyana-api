@@ -1,0 +1,45 @@
+generated: '2026-09-28'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml
+- openapi/edelweiss-hotel-polyana-api-availability-pricing-api-openapi.yml
+- openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml
+- openapi/edelweiss-hotel-polyana-api-search-api-openapi.yml
+vocabulary:
+  name: Edelweiss Hotel Polyana API Domain Vocabulary
+  description: 'Terms declared by Edelweiss Hotel Polyana API''s own API contract: its resource groups, objects and enumerations, with the contract''s
+    definitions. Derived, not authored.'
+  version: '2026-09-28'
+  terms:
+  - term: AI & LLM Manifests
+    definition: Structured Markdown and text discovery endpoints for AI agents
+    tags:
+    - Resource Group
+    source: openapi/edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml
+  - term: Availability & Pricing
+    definition: Real-time rates and XML listing feeds for Google Hotels & OTA aggregators
+    tags:
+    - Resource Group
+    source: openapi/edelweiss-hotel-polyana-api-availability-pricing-api-openapi.yml
+  - term: Hotel Information
+    definition: Public factual data, ratings, room tariffs, and resort profiles
+    tags:
+    - Resource Group
+    source: openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml
+  - term: Search
+    definition: Public content and room search query endpoint
+    tags:
+    - Resource Group
+    source: openapi/edelweiss-hotel-polyana-api-search-api-openapi.yml
+  - term: RoomTariff
+    definition: 'Object declared by the contract with fields: key, canonicalSlug, nameUk, nameEn, bookingComAliasUk, bookingComAliasEn, urlUk,
+      urlEn, pricePerNightUah, areaSqm, capacityGuests, hasBalcony. (3 more)'
+    tags:
+    - Object
+    source: openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml#/components/schemas/RoomTariff
+  - term: HotelAiData
+    definition: 'Object declared by the contract with fields: hotel, rating, location, roomTariffs2026, extraServices, medicalProfile.'
+    tags:
+    - Object
+    source: openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml#/components/schemas/HotelAiData

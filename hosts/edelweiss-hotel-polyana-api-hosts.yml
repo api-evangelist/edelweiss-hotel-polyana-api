@@ -1,0 +1,51 @@
+generated: '2026-09-28'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 3
+  own: 1
+  other_domain: 2
+  platform: 0
+  roles:
+  - api
+  - portal
+  - website
+hosts:
+- host: api.com.ua
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: api.com.ua
+  role: api
+  relation: other-domain
+- host: api.edelweiss-hotel.com.ua\
+  found_by:
+  - pointer
+  types:
+  - DeveloperPortal
+  serves: []
+  registrable_domain: com.ua\
+  role: portal
+  relation: other-domain
+- host: edelweiss-hotel.com.ua
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  types:
+  - Website
+  - Documentation
+  - Pricing
+  - Support
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - docs
+  registrable_domain: edelweiss-hotel.com.ua
+  role: website
+  relation: own

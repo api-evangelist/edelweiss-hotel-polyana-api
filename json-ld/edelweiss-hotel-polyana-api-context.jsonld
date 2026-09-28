@@ -1,0 +1,100 @@
+{
+  "@context": {
+    "@vocab": "https://edelweiss-hotel.com.ua/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "edelweiss": "https://edelweiss-hotel.com.ua/schema#",
+    "RoomTariff": "edelweiss:RoomTariff",
+    "key": {
+      "@id": "edelweiss:key",
+      "@type": "xsd:string"
+    },
+    "canonicalSlug": {
+      "@id": "edelweiss:canonicalSlug",
+      "@type": "xsd:string"
+    },
+    "nameUk": {
+      "@id": "edelweiss:nameUk",
+      "@type": "xsd:string"
+    },
+    "nameEn": {
+      "@id": "edelweiss:nameEn",
+      "@type": "xsd:string"
+    },
+    "bookingComAliasUk": {
+      "@id": "edelweiss:bookingComAliasUk",
+      "@type": "xsd:string"
+    },
+    "bookingComAliasEn": {
+      "@id": "edelweiss:bookingComAliasEn",
+      "@type": "xsd:string"
+    },
+    "urlUk": {
+      "@id": "edelweiss:urlUk",
+      "@type": "@id"
+    },
+    "urlEn": {
+      "@id": "edelweiss:urlEn",
+      "@type": "@id"
+    },
+    "pricePerNightUah": {
+      "@id": "edelweiss:pricePerNightUah",
+      "@type": "xsd:decimal"
+    },
+    "areaSqm": {
+      "@id": "edelweiss:areaSqm",
+      "@type": "xsd:decimal"
+    },
+    "capacityGuests": {
+      "@id": "edelweiss:capacityGuests",
+      "@type": "xsd:integer"
+    },
+    "hasBalcony": {
+      "@id": "edelweiss:hasBalcony",
+      "@type": "xsd:boolean"
+    },
+    "hasBathtub": {
+      "@id": "edelweiss:hasBathtub",
+      "@type": "xsd:boolean"
+    },
+    "beddingUk": {
+      "@id": "edelweiss:beddingUk",
+      "@type": "xsd:string"
+    },
+    "beddingEn": {
+      "@id": "edelweiss:beddingEn",
+      "@type": "xsd:string"
+    },
+    "HotelAiData": "edelweiss:HotelAiData",
+    "hotel": {
+      "@id": "edelweiss:hotel"
+    },
+    "rating": {
+      "@id": "edelweiss:rating"
+    },
+    "location": {
+      "@id": "edelweiss:location"
+    },
+    "roomTariffs2026": {
+      "@id": "edelweiss:roomTariffs2026",
+      "@container": "@list"
+    },
+    "extraServices": {
+      "@id": "edelweiss:extraServices"
+    },
+    "medicalProfile": {
+      "@id": "edelweiss:medicalProfile"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Edelweiss Hotel Polyana API API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Edelweiss Hotel Polyana API's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-09-28) from openapi/edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml, openapi/edelweiss-hotel-polyana-api-availability-pricing-api-openapi.yml, openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml.",
+  "dcterms:created": "2026-09-28",
+  "dcterms:source": [
+    "openapi/edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml",
+    "openapi/edelweiss-hotel-polyana-api-availability-pricing-api-openapi.yml",
+    "openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml",
+    "openapi/edelweiss-hotel-polyana-api-search-api-openapi.yml"
+  ]
+}

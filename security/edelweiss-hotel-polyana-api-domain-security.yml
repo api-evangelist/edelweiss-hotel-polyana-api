@@ -1,4 +1,4 @@
-generated: '2026-09-18'
+generated: '2026-09-28'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:

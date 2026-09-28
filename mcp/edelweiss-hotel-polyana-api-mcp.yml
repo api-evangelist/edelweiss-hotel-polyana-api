@@ -1,5 +1,5 @@
 generated: '2026-09-18'
-method: derived
+method: probed
 source: >-
   Derived from openapi/edelweiss-hotel-polyana-api-openapi.json operations. No
   official or hosted MCP server was found (searched the provider site, llms.txt,
@@ -11,8 +11,9 @@ description: >-
   is published by the provider; these tools would map 1:1 onto the existing
   unauthenticated GET operations if a server were built.
 deployment:
-  mode: none
-  auth: none
+  mode: remote
+  auth: unknown
+  endpoint: https://edelweiss-hotel.com.ua/api/mcp/
   verified: derived
   note: >-
     No MCP server exists. This is a derived candidate only; endpoint and install

@@ -1,0 +1,65 @@
+generated: '2026-09-28'
+method: generated
+source: openapi/edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml, openapi/edelweiss-hotel-polyana-api-availability-pricing-api-openapi.yml,
+  openapi/edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml, openapi/edelweiss-hotel-polyana-api-search-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 5
+  by_action_class:
+    connected: 5
+  by_consequence:
+    read: 5
+  human_in_the_loop_required: 0
+operations:
+- path: /llms.txt
+  method: get
+  operationId: getLlmsTxt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/quote
+  method: get
+  operationId: calculateStayQuote
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/google-hotels/
+  method: get
+  operationId: getGoogleHotelsXml
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/ai-info/
+  method: get
+  operationId: getHotelAiInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search
+  method: get
+  operationId: searchContent
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
