@@ -4,6 +4,7 @@ source: >-
   https://edelweiss-hotel.com.ua/.well-known/ai-plugin.json (auth: none),
   https://edelweiss-hotel.com.ua/openapi.json (no auth/quota),
   https://edelweiss-hotel.com.ua/prices/ (hotel room tariffs, not API tiers)
+name: Edelweiss Hotel Polyana API Plans
 plan_count: 0
 plans: []
 note: >-

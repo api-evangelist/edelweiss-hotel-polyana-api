@@ -3,6 +3,7 @@ method: searched
 source: >-
   Provider docs (api-docs, llms.txt, llms-full.txt) and live response headers on
   /api/ai-info/ and /api/quote/.
+name: Edelweiss Hotel Polyana API Rate Limits
 limit_count: 0
 limits: []
 response_headers:
