@@ -59,7 +59,7 @@ common:
 - type: Hosts
   url: hosts/edelweiss-hotel-polyana-api-hosts.yml
 - type: DeveloperPortal
-  url: https://api.edelweiss-hotel.com.ua\
+  url: https://api.edelweiss-hotel.com.ua
 - type: Overlay
   url: overlays/edelweiss-hotel-polyana-api-openapi-overlay.yaml
 - type: Website
@@ -96,11 +96,22 @@ common:
   url: skills/_index.yml
 - type: DomainSecurity
   url: security/edelweiss-hotel-polyana-api-domain-security.yml
+- type: OpenAPI
+  url: https://edelweiss-hotel.com.ua/openapi.json
+- type: APIsJSON
+  url: https://edelweiss-hotel.com.ua/apis.json
+- type: AIPlugin
+  url: https://edelweiss-hotel.com.ua/.well-known/ai-plugin.json
+- type: LLMsTxt
+  url: https://edelweiss-hotel.com.ua/en/llms.txt
+- type: LLMsFullTxt
+  url: https://edelweiss-hotel.com.ua/llms-full.txt
 
 apis:
 - aid: edelweiss-hotel-polyana-api:edelweiss-hotel-polyana-api-ai-llm-manifests-api
   name: Edelweiss Hotel Polyana API AI & LLM Manifests API
-  description: Structured Markdown and text discovery endpoints for AI agents
+  description: Structured Markdown and text discovery endpoints for AI agents, including the Ukrainian /llms.txt, the English /en/llms.txt
+    and the full knowledge base at /llms-full.txt.
   humanURL: https://edelweiss-hotel.com.ua/api-docs
   tags:
   - AI & LLM Manifests
@@ -111,6 +122,10 @@ apis:
     url: https://edelweiss-hotel.com.ua/api-docs
   - type: LLMsTxt
     url: https://edelweiss-hotel.com.ua/llms.txt
+  - type: LLMsTxt
+    url: https://edelweiss-hotel.com.ua/en/llms.txt
+  - type: LLMsFullTxt
+    url: https://edelweiss-hotel.com.ua/llms-full.txt
   - type: LLMsTxt
     url: llms/edelweiss-hotel-polyana-api-llms.txt
 - aid: edelweiss-hotel-polyana-api:edelweiss-hotel-polyana-api-availability-pricing-api
@@ -130,7 +145,8 @@ apis:
     url: llms/edelweiss-hotel-polyana-api-llms.txt
 - aid: edelweiss-hotel-polyana-api:edelweiss-hotel-polyana-api-hotel-information-api
   name: Edelweiss Hotel Polyana API Hotel Information API
-  description: Public factual data, ratings, room tariffs, and resort profiles
+  description: Public factual data, ratings, room tariffs, and resort profiles, plus guest reviews as JSON at GET /api/reviews (each review
+    carries author, rating, source, content and date).
   humanURL: https://edelweiss-hotel.com.ua/api-docs
   tags:
   - Hotel Information
@@ -145,6 +161,8 @@ apis:
     url: llms/edelweiss-hotel-polyana-api-llms.txt
   - type: JSONSchema
     url: json-schema/edelweiss-hotel-polyana-api-hotel-ai-data-schema.json
+  - type: Reviews
+    url: https://edelweiss-hotel.com.ua/api/reviews/
 - aid: edelweiss-hotel-polyana-api:edelweiss-hotel-polyana-api-search-api
   name: Edelweiss Hotel Polyana API Search API
   description: Public content and room search query endpoint
@@ -161,6 +179,37 @@ apis:
   - type: LLMsTxt
     url: llms/edelweiss-hotel-polyana-api-llms.txt
 
+- aid: edelweiss-hotel-polyana-api:edelweiss-hotel-polyana-api-markdown-room-api
+  name: Edelweiss Hotel Polyana Markdown Room API
+  description: Returns one room category as a Markdown document (text/markdown) for AI agents, with nightly rate, distance to the
+    mineral spring pump room and room characteristics, in Ukrainian. GET /api/markdown/room/ returns the Standard room by default and
+    takes a slug query parameter (for example ?slug=lux). Not described in the provider's OpenAPI.
+  humanURL: https://edelweiss-hotel.com.ua/en/rooms/
+  baseURL: https://edelweiss-hotel.com.ua/api/markdown/room/
+  tags:
+  - AI & LLM Manifests
+  - Rooms
+  properties:
+  - type: Documentation
+    url: https://edelweiss-hotel.com.ua/api/markdown/room/
+- aid: edelweiss-hotel-polyana-api:edelweiss-hotel-mcp-server
+  name: Edelweiss Hotel MCP Server
+  description: MCP server published by the hotel (io.github.kyivuinua/edelweiss-hotel-mcp) with four tools (get_hotel_tariffs,
+    calculate_stay_quote, get_google_hotels_feed, search_faqs) backed by the hotel's public REST endpoints, and six resources (the
+    llms.txt and llms-full.txt manifests in Ukrainian and English, the OpenAPI, and an FAQ knowledge base). Described at /.well-known/mcp-server.json;
+    the streamable-http endpoint is /api/mcp/, which answered with a redirect to itself on 2026-10-03.
+  humanURL: https://edelweiss-hotel.com.ua/api-docs
+  baseURL: https://edelweiss-hotel.com.ua/api/mcp/
+  tags:
+  - MCP
+  properties:
+  - type: MCPServer
+    url: mcp/edelweiss-hotel-polyana-api-mcp.yml
+  - type: MCPServer
+    url: https://edelweiss-hotel.com.ua/.well-known/mcp-server.json
+  - type: Documentation
+    url: https://edelweiss-hotel.com.ua/api-docs
+
 x-generated:
   by: apis.io/add
   model: claude-opus-4-8
@@ -176,6 +225,8 @@ x-correction-request:
     (streamable-http, 4 tools incl. search_faqs, 6 resources; descriptor /.well-known/mcp-server.json); /en/llms.txt and /llms-full.txt. FINDINGS:
     /openapi.json, /openapi.yaml and /apis.json return 200 with a JSON/YAML content-type but serve an HTML page (soft-200) -- no published contract;
     /.well-known/ai-plugin.json is 404. The PR''s 60/min rate limit is not evidenced by headers; do not record it.'
+  applied: '2026-10-03'
+  applied_note: 'Hand-applied after the local re-profile ignored this block; re-probed live 2026-10-03, and live differs from the correction in three places, so live is recorded. (1) The soft-200 finding no longer holds: /openapi.json, /openapi.yaml and /apis.json now serve a real OpenAPI 3.1.0 (6 paths, including GET /api/reviews and /api/quote/ with a trailing slash) and a real APIs.json under every user agent tried; the contract was re-pulled verbatim to openapi/_original/ and re-split (4 areas; reviews joined the Hotel Information API) and standardized. (2) /.well-known/ai-plugin.json answers 200 (it also did on 2026-09-18), so the capture was refreshed and the AIPlugin pointer kept. (3) The MCP endpoint /api/mcp/ answers 308 to itself for GET and POST, so tools/list could not be run; the ''No MCP server exists'' candidate manifest was replaced with the provider''s /.well-known/mcp-server.json descriptor (4 tools incl. search_faqs, 6 resources), saved verbatim, with the redirect loop recorded as endpoint_status, and an MCP API entry added. Also applied: Markdown Room API entry (GET /api/markdown/room/, text/markdown, ?slug=), reviews in the Hotel Information description, /en/llms.txt and /llms-full.txt pointers, OpenAPI/APIsJSON common pointers, the stray backslash removed from the DeveloperPortal URL. Not applied: the 60/min rate limit (no header evidence).'
 x-enrichment:
   date: '2026-09-28'
   status: enriched

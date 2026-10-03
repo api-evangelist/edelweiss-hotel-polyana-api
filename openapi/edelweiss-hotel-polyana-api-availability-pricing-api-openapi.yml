@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Edelweiss Hotel Polyana Availability & Pricing API
   version: 1.0.0
-  description: Official public REST API and structured data feeds for Hotel Edelweiss (Polyana resort, Zakarpattia, Ukraine). Provides real-time room tariffs (SSOT 2026), verified Booking.com rating (9.1/10), balneological profile for 'Polyana Kvasova' mineral water, Google Hotel Center XML feed, and search services.
+  description: Official public REST API and structured data feeds for Hotel Edelweiss (Polyana resort, Zakarpattia, Ukraine). Provides real-time room tariffs (SSOT 2026), verified Booking.com rating (9.2/10), balneological profile for 'Polyana Kvasova' mineral water, Google Hotel Center XML feed, and search services.
   contact:
     name: Edelweiss Hotel Administration
     url: https://edelweiss-hotel.com.ua/contacts
@@ -17,7 +17,7 @@ tags:
 - name: Availability & Pricing
   description: Real-time rates and XML listing feeds for Google Hotels & OTA aggregators
 paths:
-  /api/quote:
+  /api/quote/:
     get:
       tags:
       - Availability & Pricing
@@ -86,4 +86,4 @@ paths:
             application/xml:
               schema:
                 type: string
-                example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<listings>\n  <entity type=\"hotel\">\n    <hotel_id>edelweiss-polyana</hotel_id>\n    <name>Edelweiss Hotel Polyana</name>\n    <roomtypes>\n      <roomtype id=\"standard-double\"><rate currency=\"UAH\">1100</rate></roomtype>\n    </roomtypes>\n  </entity>\n</listings>"
+                example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<listings>\n  <entity type=\"hotel\">\n    <hotel_id>edelweiss-polyana</hotel_id>\n    <name>Edelweiss Hotel Polyana</name>\n    <roomtypes>\n      <roomtype id=\"standard\"><rate currency=\"UAH\">1100</rate></roomtype>\n      <roomtype id=\"superior-triple\"><rate currency=\"UAH\">1400</rate></roomtype>\n      <roomtype id=\"classic-lux\"><rate currency=\"UAH\">1600</rate></roomtype>\n      <roomtype id=\"lux\"><rate currency=\"UAH\">1800</rate></roomtype>\n    </roomtypes>\n  </entity>\n</listings>"

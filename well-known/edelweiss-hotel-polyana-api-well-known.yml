@@ -1,19 +1,31 @@
-generated: '2026-09-18'
+generated: '2026-10-03'
 method: probed
-source: live probes of /.well-known/* on the provider host
+source: live probes of /.well-known/* on the provider host (2026-09-18; re-probed by hand 2026-10-03 for the provider correction, PR #1)
 note: >-
-  Only /.well-known/ai-plugin.json returns a real document (HTTP 200, valid JSON,
-  a legacy OpenAI-style AI plugin manifest pointing at the OpenAPI contract). All
-  other probed paths return the site's SPA 404 shell (HTTP 404, ~56 KB text/html)
-  and are recorded as absent. No OAuth/OIDC discovery documents are served because
-  the API requires no authentication.
+  Two real documents are served. /.well-known/ai-plugin.json answers HTTP 200 with a legacy OpenAI-style plugin
+  manifest pointing at the OpenAPI contract (the 2026-09-28 correction recorded it as 404; it answered 200 on
+  2026-09-18 and again on 2026-10-03). /.well-known/mcp-server.json answers HTTP 200 with an MCP registry-style
+  server descriptor (4 tools, 6 resources). All other probed paths return the site's Next.js 404 page (HTTP 404,
+  ~61 KB text/html) and are recorded as absent. No OAuth/OIDC discovery documents are served because the API
+  requires no authentication.
 hosts:
   - host: edelweiss-hotel.com.ua
     documents:
       - path: /.well-known/ai-plugin.json
         status: 200
-        content_type: application/json
+        content_type: application/json; charset=UTF-8
         file: edelweiss-hotel-polyana-api-ai-plugin.json
+      - path: /.well-known/mcp-server.json
+        status: 200
+        content_type: application/json; charset=UTF-8
+        file: edelweiss-hotel-polyana-api-mcp-server.json
+        note: MCP server descriptor (schema static.modelcontextprotocol.io 2025-06-18 server.schema.json), name io.github.kyivuinua/edelweiss-hotel-mcp, 4 tools and 6 resources under _meta.
+      - path: /.well-known/mcp/server-card.json
+        status: 404
+      - path: /.well-known/mcp.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
       - path: /.well-known/security.txt
         status: 404
       - path: /.well-known/openid-configuration

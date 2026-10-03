@@ -17,10 +17,5 @@
     "edelweiss-hotel-polyana-api-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": [
-    "edelweiss-hotel-polyana-api-ai-llm-manifests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "edelweiss-hotel-polyana-api-availability-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "edelweiss-hotel-polyana-api-hotel-information-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "edelweiss-hotel-polyana-api-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }
