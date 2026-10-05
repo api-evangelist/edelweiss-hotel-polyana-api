@@ -1,0 +1,12 @@
+{
+ "url": "https://edelweiss-hotel.com.ua/openapi.json",
+ "requested_url": "https://edelweiss-hotel.com.ua/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 19813,
+ "sha256": "48ed3f9d13cf5fae52ab600cab29d2d51f49e670cfefd5e05cfeaafb853b1f9b",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
